@@ -1,1 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LoomAI Marketing</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            font-family: 'Inter', sans-serif; 
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+        .screen {
+            display: none;
+            height: calc(100vh - 56px);
+            overflow-y: auto;
+            padding: 16px;
+            padding-bottom: 140px;
+        }
+        .screen.active {
+            display: block;
+        }
+        .tab-btn.active {
+            color: white;
+        }
+        .tab-btn.active .tab-icon {
+            background: white;
+            color: black;
+        }
+        .card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .btn {
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #333;
+            color: white;
+        }
+        .input {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+            outline: none;
+        }
+        .input:focus {
+            border-color: #444;
+        }
+        .price-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .price-card.popular {
+            border: 2px solid white;
+        }
+        .badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: black;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .check-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            color: #999;
+            font-size: 14px;
+        }
+        .check-list li svg {
+            flex-shrink: 0;
+        }
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 16px;
+            right: 16px;
+            background: white;
+            color: black;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .lang-toggle {
+            display: flex;
+            background: #141414;
+            border-radius: 20px;
+            padding: 4px;
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #666;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-white">
 
+    <!-- Header -->
+    <header class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+        <div class="flex items-center gap-2">
+            <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
+                <circle cx="50" cy="50" r="26" stroke="white" stroke-width="2"/>
+                <circle cx="50" cy="50" r="12" stroke="white" stroke-width="2"/>
+                <circle cx="50" cy="50" r="4" fill="white"/>
+            </svg>
+            <span class="font-semibold text-lg">LoomAI</span>
+        </div>
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        </div>
+    </header>
+
+    <!-- Screens -->
+    <main>
+        <!-- Home Screen -->
+        <div id="screen-home" class="screen active">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center">
+                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="26" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="12" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="4" fill="white"/>
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold mb-2" data-i18n="home.title">AI Sales Automation</h1>
+                <p class="text-gray-500 text-sm" data-i18n="home.subtitle">More leads. Less manual work.</p>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold" data-i18n="home.ads">Targeted Ads</h3>
+                        <p class="text-gray-500 text-xs" data-i18n="home.adsDesc">Meta, Google, TikTok</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold" data-i18n="home.bots">AI Chatbots</h3>
+                        <p class="text-gray-500 text-xs" data-i18n="home.botsDesc">24/7 lead qualification</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold" data-i18n="home.funnels">Sales Funnels</h3>
+                        <p class="text-gray-500 text-xs" data-i18n="home.funnelsDesc">Landing pages & automation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 mt-6">
+                <div class="card text-center py-4">
+                    <div class="text-xl font-bold">3x</div>
+                    <div class="text-gray-500 text-xs" data-i18n="home.roas">ROAS</div>
+                </div>
+                <div class="card text-center py-4">
+                    <div class="text-xl font-bold">24/7</div>
+                    <div class="text-gray-500 text-xs" data-i18n="home.auto">Auto</div>
+                </div>
+                <div class="card text-center py-4">
+                    <div class="text-xl font-bold">-70%</div>
+                    <div class="text-gray-500 text-xs" data-i18n="home.work">Manual</div>
+                </div>
+            </div>
+
+            <button class="btn mt-6" onclick="switchTab('contact')" data-i18n="home.cta">Get Started</button>
+        </div>
+
+        <!-- Pricing Screen -->
+        <div id="screen-pricing" class="screen">
+            <h2 class="text-xl font-bold text-center mb-2" data-i18n="pricing.title">Choose Plan</h2>
+            <p class="text-gray-500 text-center text-sm mb-6" data-i18n="pricing.subtitle">Select the best option for you</p>
+
+            <div class="price-card">
+                <h3 class="font-semibold text-lg">Simple</h3>
+                <p class="text-gray-500 text-sm mb-3" data-i18n="pricing.simpleDesc">Quick start for small business</p>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="text-3xl font-bold">$1,500</span>
+                </div>
+                <ul class="check-list mb-4">
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.s1">Ads setup (1 account, 2 weeks)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.s2">Basic Telegram bot (FAQ + leads)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.s3">CRM / Google Sheets integration</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.s4">5 ad creatives</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.s5">Analytics report</span>
+                    </li>
+                </ul>
+                <button class="btn btn-outline" onclick="selectPlan('Simple')" data-i18n="pricing.select">Select</button>
+            </div>
+
+            <div class="price-card popular">
+                <div class="badge" data-i18n="pricing.popular">POPULAR</div>
+                <h3 class="font-semibold text-lg mt-2">Pro</h3>
+                <p class="text-gray-500 text-sm mb-3" data-i18n="pricing.proDesc">Full month of growth</p>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="text-3xl font-bold">$3,000</span>
+                </div>
+                <ul class="check-list mb-4">
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.p1">Ads management (1 month)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.p2">Advanced bot (dialogs + payments)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.p3">CRM integration (AmoCRM/Bitrix)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.p4">10 creatives + content plan</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.p5">Weekly reports</span>
+                    </li>
+                </ul>
+                <button class="btn" onclick="selectPlan('Pro')" data-i18n="pricing.select">Select</button>
+            </div>
+
+            <div class="price-card">
+                <h3 class="font-semibold text-lg">Premium</h3>
+                <p class="text-gray-500 text-sm mb-3" data-i18n="pricing.premDesc">Full automation & support</p>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="text-3xl font-bold">$5,000</span>
+                </div>
+                <ul class="check-list mb-4">
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.pr1">Full ads management (1 month)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.pr2">Multilingual bot + API integrations</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.pr3">Full automation (CRM + bots + funnel)</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.pr4">20 creatives + 1 month content</span>
+                    </li>
+                    <li>
+                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        <span data-i18n="pricing.pr5">Personal manager</span>
+                    </li>
+                </ul>
+                <button class="btn btn-outline" onclick="selectPlan('Premium')" data-i18n="pricing.select">Select</button>
+            </div>
+        </div>
+
+        <!-- Contact Screen -->
+        <div id="screen-contact" class="screen">
+            <h2 class="text-xl font-bold text-center mb-2" data-i18n="contact.title">Contact Us</h2>
+            <p class="text-gray-500 text-center text-sm mb-6" data-i18n="contact.subtitle">We'll get back to you shortly</p>
+
+            <form id="contactForm" onsubmit="submitForm(event)">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2" data-i18n="contact.name">Your Name</label>
+                    <input type="text" class="input" id="name" required placeholder="John Smith" data-i18n-placeholder="contact.namePh">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2" data-i18n="contact.email">Email</label>
+                    <input type="email" class="input" id="email" required placeholder="john@company.com">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2" data-i18n="contact.company">Company</label>
+                    <input type="text" class="input" id="company" placeholder="Your Company" data-i18n-placeholder="contact.companyPh">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2" data-i18n="contact.plan">Interested Plan</label>
+                    <select class="input" id="plan">
+                        <option value="Simple">Simple — $1,500</option>
+                        <option value="Pro" selected>Pro — $3,000</option>
+                        <option value="Premium">Premium — $5,000</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm text-gray-400 mb-2" data-i18n="contact.message">Message</label>
+                    <textarea class="input" id="message" rows="3" placeholder="Tell us about your goals..." data-i18n-placeholder="contact.msgPh"></textarea>
+                </div>
+
+                <button type="submit" class="btn" data-i18n="contact.send">Send Request</button>
+            </form>
+
+            <div class="text-center mt-6">
+                <p class="text-gray-500 text-sm mb-3" data-i18n="contact.or">Or message us directly:</p>
+                <a href="https://t.me/loomaimarketing" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/></svg>
+                    Telegram
+                </a>
+            </div>
+        </div>
+
+        <!-- About Screen -->
+        <div id="screen-about" class="screen">
+            <div class="text-center mb-6">
+                <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center">
+                    <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="26" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="12" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="4" fill="white"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold">LoomAI Marketing</h2>
+                <p class="text-gray-500 text-sm" data-i18n="about.tagline">AI-Powered Sales Automation</p>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold mb-2" data-i18n="about.mission">Our Mission</h3>
+                <p class="text-gray-400 text-sm" data-i18n="about.missionText">Transform advertising from an expense into an investment. Our AI systems work 24/7 to generate leads and close deals.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold mb-2" data-i18n="about.approach">Our Approach</h3>
+                <p class="text-gray-400 text-sm" data-i18n="about.approachText">No templates. Every system is custom-built for your business, your audience, your goals.</p>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold mb-2" data-i18n="about.results">Results-Focused</h3>
+                <p class="text-gray-400 text-sm" data-i18n="about.resultsText">We measure success by your revenue, not vanity metrics. If it doesn't make money, we don't do it.</p>
+            </div>
+
+            <div class="text-center mt-6">
+                <p class="text-gray-500 text-sm mb-3" data-i18n="about.follow">Follow us:</p>
+                <div class="flex justify-center gap-4">
+                    <a href="https://t.me/loomaim" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/loomaimarketingus" target="_blank" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Tab Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-[#0a0a0a] border-t border-white/10 px-2 py-2">
+        <div class="flex justify-around">
+            <button class="tab-btn active flex flex-col items-center gap-1 px-4 py-1" onclick="switchTab('home')">
+                <div class="tab-icon w-10 h-10 rounded-xl flex items-center justify-center transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                </div>
+                <span class="text-xs" data-i18n="nav.home">Home</span>
+            </button>
+            <button class="tab-btn flex flex-col items-center gap-1 px-4 py-1 text-gray-500" onclick="switchTab('pricing')">
+                <div class="tab-icon w-10 h-10 rounded-xl flex items-center justify-center transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <span class="text-xs" data-i18n="nav.pricing">Pricing</span>
+            </button>
+            <button class="tab-btn flex flex-col items-center gap-1 px-4 py-1 text-gray-500" onclick="switchTab('contact')">
+                <div class="tab-icon w-10 h-10 rounded-xl flex items-center justify-center transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                </div>
+                <span class="text-xs" data-i18n="nav.contact">Contact</span>
+            </button>
+            <button class="tab-btn flex flex-col items-center gap-1 px-4 py-1 text-gray-500" onclick="switchTab('about')">
+                <div class="tab-icon w-10 h-10 rounded-xl flex items-center justify-center transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <span class="text-xs" data-i18n="nav.about">About</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Translations
+        const i18n = {
+            en: {
+                'home.title': 'AI Sales Automation',
+                'home.subtitle': 'More leads. Less manual work.',
+                'home.ads': 'Targeted Ads',
+                'home.adsDesc': 'Meta, Google, TikTok',
+                'home.bots': 'AI Chatbots',
+                'home.botsDesc': '24/7 lead qualification',
+                'home.funnels': 'Sales Funnels',
+                'home.funnelsDesc': 'Landing pages & automation',
+                'home.roas': 'ROAS',
+                'home.auto': 'Auto',
+                'home.work': 'Manual',
+                'home.cta': 'Get Started',
+                'pricing.title': 'Choose Plan',
+                'pricing.subtitle': 'Select the best option for you',
+                'pricing.month': '/month',
+                'pricing.simpleDesc': 'For small businesses',
+                'pricing.proDesc': 'For growing businesses',
+                'pricing.premDesc': 'For enterprises',
+                'pricing.s1': '1 platform',
+                'pricing.s2': 'Basic chatbot',
+                'pricing.s3': 'Monthly reports',
+                'pricing.p1': '3 platforms',
+                'pricing.p2': 'Advanced AI bot',
+                'pricing.p3': 'Sales funnel',
+                'pricing.p4': 'Weekly reports',
+                'pricing.pr1': 'Unlimited platforms',
+                'pricing.pr2': 'Custom AI solution',
+                'pricing.pr3': 'Dedicated manager',
+                'pricing.pr4': 'Real-time analytics',
+                'pricing.popular': 'POPULAR',
+                'pricing.select': 'Select',
+                'contact.title': 'Contact Us',
+                'contact.subtitle': "We'll get back to you shortly",
+                'contact.name': 'Your Name',
+                'contact.namePh': 'John Smith',
+                'contact.email': 'Email',
+                'contact.company': 'Company',
+                'contact.companyPh': 'Your Company',
+                'contact.plan': 'Interested Plan',
+                'contact.message': 'Message',
+                'contact.msgPh': 'Tell us about your goals...',
+                'contact.send': 'Send Request',
+                'contact.or': 'Or message us directly:',
+                'about.tagline': 'AI-Powered Sales Automation',
+                'about.mission': 'Our Mission',
+                'about.missionText': 'Transform advertising from an expense into an investment. Our AI systems work 24/7 to generate leads and close deals.',
+                'about.approach': 'Our Approach',
+                'about.approachText': 'No templates. Every system is custom-built for your business, your audience, your goals.',
+                'about.results': 'Results-Focused',
+                'about.resultsText': "We measure success by your revenue, not vanity metrics. If it doesn't make money, we don't do it.",
+                'about.follow': 'Follow us:',
+                'nav.home': 'Home',
+                'nav.pricing': 'Pricing',
+                'nav.contact': 'Contact',
+                'nav.about': 'About',
+                'toast.sent': 'Request sent! We\'ll contact you soon.',
+            },
+            ru: {
+                'home.title': 'AI Автоматизация Продаж',
+                'home.subtitle': 'Больше заявок. Меньше рутины.',
+                'home.ads': 'Таргет Реклама',
+                'home.adsDesc': 'Meta, Google, TikTok',
+                'home.bots': 'AI Чат-боты',
+                'home.botsDesc': 'Квалификация 24/7',
+                'home.funnels': 'Воронки Продаж',
+                'home.funnelsDesc': 'Лендинги и автоматизация',
+                'home.roas': 'ROAS',
+                'home.auto': 'Авто',
+                'home.work': 'Ручной',
+                'home.cta': 'Начать',
+                'pricing.title': 'Выберите Тариф',
+                'pricing.subtitle': 'Подберите лучший вариант',
+                'pricing.month': '/месяц',
+                'pricing.simpleDesc': 'Для малого бизнеса',
+                'pricing.proDesc': 'Для растущих компаний',
+                'pricing.premDesc': 'Для предприятий',
+                'pricing.s1': '1 платформа',
+                'pricing.s2': 'Базовый чат-бот',
+                'pricing.s3': 'Ежемесячные отчёты',
+                'pricing.p1': '3 платформы',
+                'pricing.p2': 'Продвинутый AI бот',
+                'pricing.p3': 'Воронка продаж',
+                'pricing.p4': 'Еженедельные отчёты',
+                'pricing.pr1': 'Безлимит платформ',
+                'pricing.pr2': 'Индивидуальный AI',
+                'pricing.pr3': 'Личный менеджер',
+                'pricing.pr4': 'Аналитика в реальном времени',
+                'pricing.popular': 'ПОПУЛЯРНЫЙ',
+                'pricing.select': 'Выбрать',
+                'contact.title': 'Связаться с Нами',
+                'contact.subtitle': 'Мы ответим вам в ближайшее время',
+                'contact.name': 'Ваше Имя',
+                'contact.namePh': 'Иван Иванов',
+                'contact.email': 'Email',
+                'contact.company': 'Компания',
+                'contact.companyPh': 'Ваша Компания',
+                'contact.plan': 'Интересующий Тариф',
+                'contact.message': 'Сообщение',
+                'contact.msgPh': 'Расскажите о ваших целях...',
+                'contact.send': 'Отправить Заявку',
+                'contact.or': 'Или напишите напрямую:',
+                'about.tagline': 'AI-Автоматизация Продаж',
+                'about.mission': 'Наша Миссия',
+                'about.missionText': 'Превратить рекламу из расхода в инвестицию. Наши AI-системы работают 24/7, генерируя заявки и закрывая сделки.',
+                'about.approach': 'Наш Подход',
+                'about.approachText': 'Никаких шаблонов. Каждая система создаётся под ваш бизнес, вашу аудиторию, ваши цели.',
+                'about.results': 'Фокус на Результат',
+                'about.resultsText': 'Мы измеряем успех вашим доходом, а не красивыми цифрами. Если это не приносит деньги — мы это не делаем.',
+                'about.follow': 'Подписывайтесь:',
+                'nav.home': 'Главная',
+                'nav.pricing': 'Тарифы',
+                'nav.contact': 'Контакты',
+                'nav.about': 'О нас',
+                'toast.sent': 'Заявка отправлена! Мы скоро свяжемся.',
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Language toggle
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+            });
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) el.textContent = i18n[lang][key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (i18n[lang][key]) el.placeholder = i18n[lang][key];
+            });
+        }
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + tab).classList.add('active');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('text-gray-500');
+            });
+            event.currentTarget.classList.add('active');
+            event.currentTarget.classList.remove('text-gray-500');
+        }
+
+        // Select plan
+        function selectPlan(plan) {
+            document.getElementById('plan').value = plan;
+            switchTab('contact');
+            document.querySelector('[onclick="switchTab(\'contact\')"]').classList.add('active');
+            document.querySelector('[onclick="switchTab(\'contact\')"]').classList.remove('text-gray-500');
+        }
+
+        // Form submit
+        function submitForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const plan = document.getElementById('plan').value;
+            const message = document.getElementById('message').value;
+
+            const text = `🎯 New Lead!\n\n👤 ${name}\n📧 ${email}\n🏢 ${company}\n💰 ${plan}\n📝 ${message}`;
+            window.open(`https://t.me/loomaimarketing?text=${encodeURIComponent(text)}`, '_blank');
+            
+            showToast(i18n[currentLang]['toast.sent']);
+            document.getElementById('contactForm').reset();
+        }
+
+        // Toast
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            toast.textContent = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+    </script>
+</body>
+</html>
