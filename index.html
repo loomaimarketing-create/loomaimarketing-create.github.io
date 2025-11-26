@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoomAI Marketing — AI-Powered Sales Automation</title>
+    <meta name="description" content="We help businesses get more leads, automate sales with AI chatbots, and build systems where advertising pays for itself.">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px); } 
+            50% { transform: translateY(-20px); } 
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes draw-circle {
+            from { stroke-dashoffset: 283; }
+            to { stroke-dashoffset: 0; }
+        }
+        
+        .float { animation: float 6s ease-in-out infinite; }
+        .fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        
+        .target-ring {
+            animation: pulse-ring 2s ease-out infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: #0a0a0a;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-primary {
+            background: white;
+            color: black;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background: #e5e5e5;
+            transform: scale(1.05);
+        }
+        
+        .btn-secondary {
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] text-white overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="30" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="5" fill="white"/>
+                    </svg>
+                    <span class="text-xl font-semibold tracking-tight">LoomAI</span>
+                </a>
+                
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Services</a>
+                    <a href="#process" class="text-gray-400 hover:text-white transition-colors text-sm">Process</a>
+                    <a href="#why-us" class="text-gray-400 hover:text-white transition-colors text-sm">Why Us</a>
+                    <a href="#contact" class="btn-primary px-5 py-2.5 rounded-full text-sm font-medium">Get Started</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMenu()" class="md:hidden p-2 border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0a0a0a] border-t border-white/5">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#services" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Services</a>
+                <a href="#process" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Process</a>
+                <a href="#why-us" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Why Us</a>
+                <a href="#contact" onclick="toggleMenu()" class="btn-primary inline-block px-5 py-2.5 rounded-full text-sm font-medium mt-2">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative pt-20">
+        <!-- Background Elements -->
+        <div class="blob w-96 h-96 bg-white top-20 -left-48"></div>
+        <div class="blob w-96 h-96 bg-white bottom-20 -right-48"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 py-20 relative">
+            <div class="text-center">
+                <!-- Target Icon Animation -->
+                <div class="mb-8 relative inline-block fade-in-up">
+                    <div class="absolute inset-0 target-ring">
+                        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="opacity-20">
+                            <circle cx="50" cy="50" r="48" stroke="white" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="float">
+                        <circle cx="50" cy="50" r="45" stroke="white" stroke-width="1.5"/>
+                        <circle cx="50" cy="50" r="30" stroke="white" stroke-width="1.5"/>
+                        <circle cx="50" cy="50" r="15" stroke="white" stroke-width="1.5"/>
+                        <circle cx="50" cy="50" r="5" fill="white"/>
+                    </svg>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight fade-in-up delay-1">
+                    <span class="gradient-text">Turn Ads Into</span><br>
+                    <span class="text-white">Revenue System</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed fade-in-up delay-2">
+                    AI-powered lead generation, chatbot automation, and sales funnels 
+                    that work 24/7. Stop spending on ads — start investing in growth.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up delay-3">
+                    <a href="#contact" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg">
+                        Book Free Strategy Call
+                    </a>
+                    <a href="#services" class="btn-secondary px-8 py-4 rounded-full font-medium text-lg text-gray-300">
+                        See How It Works
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-white/10 fade-in-up delay-4">
+                    <div>
+                        <div class="text-3xl md:text-4xl font-bold">3x</div>
+                        <div class="text-gray-500 text-sm mt-1">Avg. ROAS Increase</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl md:text-4xl font-bold">24/7</div>
+                        <div class="text-gray-500 text-sm mt-1">Automated Sales</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl md:text-4xl font-bold">-70%</div>
+                        <div class="text-gray-500 text-sm mt-1">Manual Work</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+            <div class="w-6 h-10 border border-white/20 rounded-full flex items-start justify-center p-2">
+                <div class="w-1 h-2 bg-white rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 relative">
+        <div class="blob w-80 h-80 bg-white top-40 right-0"></div>
+        
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">What We Do</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Complete Sales Automation</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="gradient-border rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Targeted Advertising</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Meta, Google, TikTok ads that reach your ideal customers. Data-driven targeting that maximizes every dollar spent.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="gradient-border rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI Chatbots</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Intelligent bots for Instagram, Telegram, WhatsApp. Qualify leads, answer questions, and close deals automatically.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="gradient-border rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sales Funnels</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Custom-built funnels that convert strangers into customers. Landing pages, email sequences, retargeting — all connected.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 relative border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">How It Works</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Simple Process, Real Results</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-2xl font-light">
+                        1
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Discovery Call</h3>
+                    <p class="text-gray-500 text-sm">We learn your business, goals, and current challenges</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:flex items-center justify-center -mt-8">
+                    <svg class="w-8 h-8 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-2xl font-light">
+                        2
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Custom Strategy</h3>
+                    <p class="text-gray-500 text-sm">We build a tailored plan for your specific needs</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:flex items-center justify-center -mt-8">
+                    <svg class="w-8 h-8 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-2xl font-light">
+                        3
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Implementation</h3>
+                    <p class="text-gray-500 text-sm">We build and launch your complete system</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:flex items-center justify-center -mt-8">
+                    <svg class="w-8 h-8 text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center mx-auto mb-6 text-2xl font-light">
+                        4
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Growth</h3>
+                    <p class="text-gray-500 text-sm">Optimize, scale, and watch your revenue grow</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="py-32 relative border-t border-white/5">
+        <div class="blob w-96 h-96 bg-white -left-48 top-20"></div>
+        
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">Why Choose Us</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">We're Not an Agency.<br>We're Your Growth Partner.</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Results-Focused</h4>
+                                <p class="text-gray-500">We measure success by your revenue, not vanity metrics. If it doesn't make you money, we don't do it.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Custom Solutions</h4>
+                                <p class="text-gray-500">No templates. Every system is built specifically for your business, your audience, your goals.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">AI-Powered</h4>
+                                <p class="text-gray-500">Cutting-edge automation that works while you sleep. Your sales machine never takes a day off.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Full Transparency</h4>
+                                <p class="text-gray-500">Real-time dashboards, weekly reports, and direct access to our team. You always know what's happening.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="relative">
+                    <!-- Animated Target -->
+                    <div class="flex items-center justify-center mb-8">
+                        <svg width="200" height="200" viewBox="0 0 400 400" fill="none" class="opacity-20">
+                            <circle cx="200" cy="200" r="180" stroke="white" stroke-width="0.5"/>
+                            <circle cx="200" cy="200" r="140" stroke="white" stroke-width="0.5"/>
+                            <circle cx="200" cy="200" r="100" stroke="white" stroke-width="0.5"/>
+                            <circle cx="200" cy="200" r="60" stroke="white" stroke-width="0.5"/>
+                            <circle cx="200" cy="200" r="20" fill="white"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Metric Cards Grid -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="gradient-border rounded-xl p-4 float text-center" style="animation-delay: 0s;">
+                            <div class="text-2xl font-bold">+247%</div>
+                            <div class="text-gray-500 text-sm">Lead increase</div>
+                        </div>
+                        
+                        <div class="gradient-border rounded-xl p-4 float text-center" style="animation-delay: 1s;">
+                            <div class="text-2xl font-bold">$12.4</div>
+                            <div class="text-gray-500 text-sm">Avg. cost per lead</div>
+                        </div>
+                        
+                        <div class="gradient-border rounded-xl p-4 float text-center" style="animation-delay: 2s;">
+                            <div class="text-2xl font-bold">4.2x</div>
+                            <div class="text-gray-500 text-sm">ROAS achieved</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-32 relative border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="inline-block mb-8">
+                <svg width="60" height="60" viewBox="0 0 100 100" fill="none" class="float">
+                    <circle cx="50" cy="50" r="45" stroke="white" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="30" stroke="white" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="15" stroke="white" stroke-width="1.5"/>
+                    <circle cx="50" cy="50" r="5" fill="white"/>
+                </svg>
+            </div>
+            
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Automate<br>Your Growth?</h2>
+            <p class="text-xl text-gray-400 mb-10">
+                Book a free 30-minute strategy call. We'll analyze your current setup and show you exactly how to scale.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://t.me/loomaimarketing" target="_blank" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/>
+                    </svg>
+                    Message Us on Telegram
+                </a>
+            </div>
+
+            <div class="mt-12 flex items-center justify-center gap-8 text-gray-500">
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Free consultation
+                </span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    No commitment
+                </span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Real insights
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3">
+                    <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="30" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="15" stroke="white" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="5" fill="white"/>
+                    </svg>
+                    <span class="text-lg font-semibold">LoomAI Marketing</span>
+                </a>
+
+                <!-- Social Links -->
+                <div class="flex items-center gap-6">
+                    <a href="https://t.me/loomaimarketing" target="_blank" class="text-gray-500 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/loomaimarketing" target="_blank" class="text-gray-500 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-gray-600 text-sm">
+                    © 2025 LoomAI. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-[#0a0a0a]/95');
+            } else {
+                nav.classList.remove('bg-[#0a0a0a]/95');
+            }
+        });
+    </script>
+</body>
+</html>
