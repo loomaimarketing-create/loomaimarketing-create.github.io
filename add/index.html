@@ -645,51 +645,49 @@
             document.querySelector('[onclick="switchTab(\'contact\')"]').classList.remove('text-gray-500');
         }
 
-        // Form submit
-        document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('form-name').value;
-    const email = document.getElementById('form-email').value;
-    const company = document.getElementById('form-company').value;
-    const plan = document.getElementById('form-plan').value;
-    const message = document.getElementById('form-message').value;
+                // Form submit
+        async function submitForm(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const plan = document.getElementById('plan').value;
+            const message = document.getElementById('message').value;
 
-    if (!name || !email) {
-        showToast(translations[currentLang]['toast.error']);
-        return;
-    }
+            if (!name || !email) {
+                showToast(i18n[currentLang]['toast.error'] || 'Please fill required fields');
+                return;
+            }
 
-    // Показываем загрузку
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = '...';
-    submitBtn.disabled = true;
+            const submitBtn = document.querySelector('#contactForm button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '...';
+            submitBtn.disabled = true;
 
-    try {
-        const response = await fetch('/api/send-lead', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, company, plan, message })
-        });
+            try {
+                const response = await fetch('/api/send-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, company, plan, message })
+                });
 
-        if (response.ok) {
-            showToast(translations[currentLang]['toast.sent']);
-            this.reset();
-        } else {
-            throw new Error('Failed');
+                if (response.ok) {
+                    showToast(i18n[currentLang]['toast.sent']);
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch (error) {
+                const text = `🎯 New Lead!\n\n👤 ${name}\n📧 ${email}\n🏢 ${company}\n💰 ${plan}\n📝 ${message}`;
+                window.open(`https://t.me/loomaimarketing?text=${encodeURIComponent(text)}`, '_blank');
+                showToast(i18n[currentLang]['toast.sent']);
+                document.getElementById('contactForm').reset();
+            }
+
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
-    } catch (error) {
-        // Fallback на Telegram ссылку если сервер не работает
-        const text = `🎯 New Lead!\n\n👤 ${name}\n📧 ${email}\n🏢 ${company}\n💰 ${plan}\n📝 ${message}`;
-        window.open(`https://t.me/loomaimarketing?text=${encodeURIComponent(text)}`, '_blank');
-        showToast(translations[currentLang]['toast.sent']);
-        this.reset();
-    }
-
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-});
         // Toast
         function showToast(text) {
             const toast = document.getElementById('toast');
