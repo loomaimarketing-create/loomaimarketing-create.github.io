@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoomAI Marketing — AI-Powered Sales Automation</title>
-    <meta name="description" content="We help businesses get more leads, automate sales with AI chatbots, and build systems where advertising pays for itself.">
+    <title>LoomAI — Websites & Automation for Small Business</title>
+    <meta name="description" content="Custom websites, CRMs and automation systems for small businesses. No agencies. No fluff. Just systems that work.">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,17 +16,9 @@
             0%, 100% { transform: translateY(0px); } 
             50% { transform: translateY(-20px); } 
         }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
         @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes draw-circle {
-            from { stroke-dashoffset: 283; }
-            to { stroke-dashoffset: 0; }
         }
         
         .float { animation: float 6s ease-in-out infinite; }
@@ -35,10 +27,6 @@
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
         .delay-3 { animation-delay: 0.3s; opacity: 0; }
         .delay-4 { animation-delay: 0.4s; opacity: 0; }
-        
-        .target-ring {
-            animation: pulse-ring 2s ease-out infinite;
-        }
         
         .gradient-text {
             background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
@@ -120,7 +108,6 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
                 <a href="#" class="flex items-center gap-3">
                     <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
                         <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
@@ -131,16 +118,14 @@
                     <span class="text-xl font-semibold tracking-tight">LoomAI</span>
                 </a>
                 
-                <!-- Nav Links -->
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#services" class="text-gray-400 hover:text-white transition-colors text-sm">Services</a>
-                    <a href="#process" class="text-gray-400 hover:text-white transition-colors text-sm">Process</a>
-                    <a href="#why-us" class="text-gray-400 hover:text-white transition-colors text-sm">Why Us</a>
+                    <a href="#pricing" class="text-gray-400 hover:text-white transition-colors text-sm">Pricing</a>
+                    <a href="#why-me" class="text-gray-400 hover:text-white transition-colors text-sm">Why Me</a>
                     <a href="/app/" class="btn-secondary px-5 py-2.5 rounded-full text-sm font-medium">Client Portal</a>
-                    <a href="#contact" class="btn-primary px-5 py-2.5 rounded-full text-sm font-medium">Get Started</a>
+                    <a href="#contact" class="btn-primary px-5 py-2.5 rounded-full text-sm font-medium">Start Project</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button onclick="toggleMenu()" class="md:hidden p-2 border border-white/20 rounded-lg hover:bg-white/10 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
@@ -149,33 +134,25 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#0a0a0a] border-t border-white/5">
             <div class="px-6 py-4 space-y-4">
                 <a href="#services" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Services</a>
-                <a href="#process" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Process</a>
-                <a href="#why-us" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Why Us</a>
+                <a href="#pricing" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Pricing</a>
+                <a href="#why-me" onclick="toggleMenu()" class="block text-gray-400 hover:text-white transition-colors">Why Me</a>
                 <a href="/app/" onclick="toggleMenu()" class="btn-secondary inline-block px-5 py-2.5 rounded-full text-sm font-medium mt-2">Client Portal</a>
-                <a href="#contact" onclick="toggleMenu()" class="btn-primary inline-block px-5 py-2.5 rounded-full text-sm font-medium mt-2">Get Started</a>
+                <a href="#contact" onclick="toggleMenu()" class="btn-primary inline-block px-5 py-2.5 rounded-full text-sm font-medium mt-2">Start Project</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative pt-20">
-        <!-- Background Elements -->
         <div class="blob w-96 h-96 bg-white top-20 -left-48"></div>
         <div class="blob w-96 h-96 bg-white bottom-20 -right-48"></div>
         
         <div class="max-w-6xl mx-auto px-6 py-20 relative">
             <div class="text-center">
-                <!-- Target Icon Animation -->
                 <div class="mb-8 relative inline-block fade-in-up">
-                    <div class="absolute inset-0 target-ring">
-                        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="opacity-20">
-                            <circle cx="50" cy="50" r="48" stroke="white" stroke-width="1"/>
-                        </svg>
-                    </div>
                     <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="float">
                         <circle cx="50" cy="50" r="45" stroke="white" stroke-width="1.5"/>
                         <circle cx="50" cy="50" r="30" stroke="white" stroke-width="1.5"/>
@@ -185,46 +162,67 @@
                 </div>
 
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight fade-in-up delay-1">
-                    <span class="gradient-text">Turn Ads Into</span><br>
-                    <span class="text-white">Revenue System</span>
+                    <span class="gradient-text">Websites & Systems</span><br>
+                    <span class="text-white">That Actually Work</span>
                 </h1>
                 
                 <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed fade-in-up delay-2">
-                    AI-powered lead generation, chatbot automation, and sales funnels 
-                    that work 24/7. Stop spending on ads — start investing in growth.
+                    Custom websites, CRMs, and automation for small businesses.<br>
+                    Built to get you customers, not just look pretty.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up delay-3">
                     <a href="#contact" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg">
-                        Book Free Strategy Call
+                        Start Your Project
                     </a>
                     <a href="#services" class="btn-secondary px-8 py-4 rounded-full font-medium text-lg text-gray-300">
-                        See How It Works
+                        See What I Build
                     </a>
                 </div>
 
-                <!-- Stats -->
                 <div class="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-white/10 fade-in-up delay-4">
                     <div>
-                        <div class="text-3xl md:text-4xl font-bold">3x</div>
-                        <div class="text-gray-500 text-sm mt-1">Avg. ROAS Increase</div>
+                        <div class="text-3xl md:text-4xl font-bold">14-21</div>
+                        <div class="text-gray-500 text-sm mt-1">Days Delivery</div>
                     </div>
                     <div>
-                        <div class="text-3xl md:text-4xl font-bold">24/7</div>
-                        <div class="text-gray-500 text-sm mt-1">Automated Sales</div>
+                        <div class="text-3xl md:text-4xl font-bold">$1.5-5k</div>
+                        <div class="text-gray-500 text-sm mt-1">Project Range</div>
                     </div>
                     <div>
-                        <div class="text-3xl md:text-4xl font-bold">-70%</div>
-                        <div class="text-gray-500 text-sm mt-1">Manual Work</div>
+                        <div class="text-3xl md:text-4xl font-bold">100%</div>
+                        <div class="text-gray-500 text-sm mt-1">Custom Built</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
             <div class="w-6 h-10 border border-white/20 rounded-full flex items-start justify-center p-2">
                 <div class="w-1 h-2 bg-white rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="py-24 relative border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="gradient-border rounded-3xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center text-4xl flex-shrink-0">
+                        👋
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">Hi, I'm Gregory.</h2>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            I build websites, CRMs, and automation systems for small businesses.
+                            <span class="text-white">No agencies. No fluff. Just systems that work.</span>
+                        </p>
+                        <p class="text-gray-500 mt-4">
+                            I work directly with business owners who want results, not endless meetings.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -235,48 +233,239 @@
         
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">What We Do</p>
-                <h2 class="text-4xl md:text-5xl font-bold">Complete Sales Automation</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">What I Build</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Everything Your Business Needs</h2>
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Service 1 -->
                 <div class="gradient-border rounded-2xl p-8 card-hover">
-                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        🌐
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Targeted Advertising</h3>
+                    <h3 class="text-xl font-semibold mb-3">Websites & Landing Pages</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Meta, Google, TikTok ads that reach your ideal customers. Data-driven targeting that maximizes every dollar spent.
+                        Fast, mobile-friendly sites that convert visitors into customers. No templates — built from scratch for your business.
                     </p>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="gradient-border rounded-2xl p-8 card-hover">
-                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                        </svg>
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        🤖
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">AI Chatbots</h3>
+                    <h3 class="text-xl font-semibold mb-3">Chatbots & Auto-Replies</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Intelligent bots for Instagram, Telegram, WhatsApp. Qualify leads, answer questions, and close deals automatically.
+                        Bots that answer customer questions, book appointments, and capture leads while you sleep. Works with Telegram, WhatsApp, Instagram.
                     </p>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="gradient-border rounded-2xl p-8 card-hover">
-                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                        </svg>
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        📊
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Sales Funnels</h3>
+                    <h3 class="text-xl font-semibold mb-3">CRM & Lead Management</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Custom-built funnels that convert strangers into customers. Landing pages, email sequences, retargeting — all connected.
+                        Simple systems to track every lead, every customer, every dollar. Know exactly where your business stands.
                     </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div class="gradient-border rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        📱
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">PWA Mobile Apps</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Apps your customers can install on their phone — without app store fees. Booking, ordering, loyalty programs.
+                    </p>
+                </div>
+
+                <div class="gradient-border rounded-2xl p-8 card-hover">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        ⚡
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Automation & Integrations</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Connect your tools. Auto-send emails, sync calendars, update spreadsheets. Stop doing things manually.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 relative border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">Pricing</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Simple, Honest Pricing</h2>
+                <p class="text-gray-400 mt-4 text-lg">No hidden fees. No surprises.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="gradient-border rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-2">Starter System</h3>
+                    <p class="text-gray-500 mb-6">Perfect for getting started</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-4xl font-bold">$1,500</span>
+                        <span class="text-gray-500">starting from</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Landing page or simple website
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Contact form with notifications
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Mobile-friendly design
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            14 days delivery
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-secondary block text-center px-6 py-4 rounded-full font-semibold">Get Started</a>
+                </div>
+
+                <div class="gradient-border rounded-2xl p-8 relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-bold px-4 py-1 rounded-full">
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Complete System</h3>
+                    <p class="text-gray-500 mb-6">Full automation package</p>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-4xl font-bold">$3,000</span>
+                        <span class="text-gray-500">average project</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Website + PWA app
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Chatbot (Telegram/WhatsApp)
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            CRM & lead tracking
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            Email/SMS automation
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <svg class="w-5 h-5 text-white flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            21 days delivery
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary block text-center px-6 py-4 rounded-full font-semibold">Get Started</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-500">Need something custom? Projects up to <span class="text-white font-semibold">$5,000</span> for complex systems.</p>
+                <p class="text-gray-600 text-sm mt-2">Monthly support available from $300/mo after launch.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Me Section -->
+    <section id="why-me" class="py-32 relative border-t border-white/5">
+        <div class="blob w-96 h-96 bg-white -left-48 top-20"></div>
+        
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">Why Work With Me</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Not Your Typical Agency</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="gradient-border rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h3 class="font-semibold mb-2">Direct Communication</h3>
+                    <p class="text-gray-500 text-sm">You talk to me. Not an account manager, not an assistant.</p>
+                </div>
+
+                <div class="gradient-border rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="font-semibold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-500 text-sm">14-21 days, not 3 months. I respect your time.</p>
+                </div>
+
+                <div class="gradient-border rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-4">💰</div>
+                    <h3 class="font-semibold mb-2">No Agency Overhead</h3>
+                    <p class="text-gray-500 text-sm">Lower costs because I don't have a fancy office to pay for.</p>
+                </div>
+
+                <div class="gradient-border rounded-2xl p-6 text-center">
+                    <div class="text-3xl mb-4">📈</div>
+                    <h3 class="font-semibold mb-2">Scalable Systems</h3>
+                    <p class="text-gray-500 text-sm">Built to grow with your business. No rebuilding later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Not For Everyone Section -->
+    <section class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="gradient-border rounded-3xl p-8 md:p-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">This Is NOT For Everyone</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-red-400 mb-4 flex items-center gap-2">
+                            <span>❌</span> Not a good fit if:
+                        </h3>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-400">•</span>
+                                You want the cheapest option possible
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-400">•</span>
+                                You need a huge corporate team
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-400">•</span>
+                                You want endless revisions and meetings
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-400">•</span>
+                                You're not ready to invest in your business
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-green-400 mb-4 flex items-center gap-2">
+                            <span>✅</span> Perfect fit if:
+                        </h3>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-400">•</span>
+                                You value quality over cheapness
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-400">•</span>
+                                You want direct, honest communication
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-400">•</span>
+                                You need results, not excuses
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-400">•</span>
+                                You're ready to grow your business
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -287,140 +476,40 @@
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
                 <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">How It Works</p>
-                <h2 class="text-4xl md:text-5xl font-bold">Simple Process, Real Results</h2>
+                <h2 class="text-4xl md:text-5xl font-bold">Simple 4-Step Process</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
-                <!-- Step 1 -->
                 <div class="text-center">
                     <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-2xl font-light">
                         1
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Discovery Call</h3>
-                    <p class="text-gray-500 text-sm">We learn your business, goals, and current challenges</p>
+                    <h3 class="text-lg font-semibold mb-2">You Reach Out</h3>
+                    <p class="text-gray-500 text-sm">Tell me what you need. Email or Telegram, your choice.</p>
                 </div>
 
-                <!-- Step 2 -->
                 <div class="text-center">
                     <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-2xl font-light">
                         2
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Custom Strategy</h3>
-                    <p class="text-gray-500 text-sm">We build a tailored plan for your specific needs</p>
+                    <h3 class="text-lg font-semibold mb-2">I Send a Plan</h3>
+                    <p class="text-gray-500 text-sm">Clear scope, timeline, and price. No surprises.</p>
                 </div>
 
-                <!-- Step 3 -->
                 <div class="text-center">
                     <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-2xl font-light">
                         3
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Implementation</h3>
-                    <p class="text-gray-500 text-sm">We build and launch your complete system</p>
+                    <h3 class="text-lg font-semibold mb-2">I Build It</h3>
+                    <p class="text-gray-500 text-sm">You get updates. I deliver in 14-21 days.</p>
                 </div>
 
-                <!-- Step 4 -->
                 <div class="text-center">
                     <div class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center mx-auto mb-6 text-2xl font-light">
                         4
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Growth</h3>
-                    <p class="text-gray-500 text-sm">Optimize, scale, and watch your revenue grow</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Us Section -->
-    <section id="why-us" class="py-32 relative border-t border-white/5">
-        <div class="blob w-96 h-96 bg-white -left-48 top-20"></div>
-        
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <p class="text-gray-500 uppercase tracking-widest text-sm mb-4">Why Choose Us</p>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-8">We're Not an Agency.<br>We're Your Growth Partner.</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-1">Results-Focused</h4>
-                                <p class="text-gray-500">We measure success by your revenue, not vanity metrics. If it doesn't make you money, we don't do it.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-1">Custom Solutions</h4>
-                                <p class="text-gray-500">No templates. Every system is built specifically for your business, your audience, your goals.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-1">AI-Powered</h4>
-                                <p class="text-gray-500">Cutting-edge automation that works while you sleep. Your sales machine never takes a day off.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-4">
-                            <div class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-1">Full Transparency</h4>
-                                <p class="text-gray-500">Real-time dashboards, weekly reports, and direct access to our team. You always know what's happening.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visual -->
-                <div class="relative">
-                    <!-- Animated Target -->
-                    <div class="flex items-center justify-center mb-8">
-                        <svg width="200" height="200" viewBox="0 0 400 400" fill="none" class="opacity-20">
-                            <circle cx="200" cy="200" r="180" stroke="white" stroke-width="0.5"/>
-                            <circle cx="200" cy="200" r="140" stroke="white" stroke-width="0.5"/>
-                            <circle cx="200" cy="200" r="100" stroke="white" stroke-width="0.5"/>
-                            <circle cx="200" cy="200" r="60" stroke="white" stroke-width="0.5"/>
-                            <circle cx="200" cy="200" r="20" fill="white"/>
-                        </svg>
-                    </div>
-                    
-                    <!-- Metric Cards Grid -->
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="gradient-border rounded-xl p-4 float text-center" style="animation-delay: 0s;">
-                            <div class="text-2xl font-bold">+247%</div>
-                            <div class="text-gray-500 text-sm">Lead increase</div>
-                        </div>
-                        
-                        <div class="gradient-border rounded-xl p-4 float text-center" style="animation-delay: 1s;">
-                            <div class="text-2xl font-bold">$12.4</div>
-                            <div class="text-gray-500 text-sm">Avg. cost per lead</div>
-                        </div>
-                        
-                        <div class="gradient-border rounded-xl p-4 float text-center" style="animation-delay: 2s;">
-                            <div class="text-2xl font-bold">4.2x</div>
-                            <div class="text-gray-500 text-sm">ROAS achieved</div>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-semibold mb-2">You Launch</h3>
+                    <p class="text-gray-500 text-sm">Your system goes live. Customers start coming in.</p>
                 </div>
             </div>
         </div>
@@ -438,27 +527,33 @@
                 </svg>
             </div>
             
-            <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Automate<br>Your Growth?</h2>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Start?</h2>
             <p class="text-xl text-gray-400 mb-10">
-                Book a free 30-minute strategy call. We'll analyze your current setup and show you exactly how to scale.
+                Tell me about your business. I'll get back to you within 24 hours.
             </p>
             
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="https://t.me/loomaimarketing" target="_blank" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/>
-                </svg>
-        Message Us on Telegram
-    </a>
-                    <a href="/app/" class="btn-secondary px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                </svg>
-        Client Portal
-    </a>
-</div>
+                <a href="https://t.me/loomaimarketing" target="_blank" class="btn-primary px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/>
+                    </svg>
+                    Message on Telegram
+                </a>
+                <a href="/app/" class="btn-secondary px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Submit Request Form
+                </a>
+            </div>
 
-            <div class="mt-12 flex items-center justify-center gap-8 text-gray-500">
+            <div class="mt-8">
+                <a href="mailto:support@loomaimarketing.com" class="text-gray-500 hover:text-white transition-colors">
+                    or email: support@loomaimarketing.com
+                </a>
+            </div>
+
+            <div class="mt-12 flex items-center justify-center gap-8 text-gray-500 flex-wrap">
                 <span class="flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
@@ -469,13 +564,13 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
-                    No commitment
+                    24h response
                 </span>
                 <span class="flex items-center gap-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
-                    Real insights
+                    No commitment
                 </span>
             </div>
         </div>
@@ -485,7 +580,6 @@
     <footer class="py-12 border-t border-white/5">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <!-- Logo -->
                 <a href="#" class="flex items-center gap-3">
                     <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
                         <circle cx="50" cy="50" r="45" stroke="white" stroke-width="2"/>
@@ -493,12 +587,11 @@
                         <circle cx="50" cy="50" r="15" stroke="white" stroke-width="2"/>
                         <circle cx="50" cy="50" r="5" fill="white"/>
                     </svg>
-                    <span class="text-lg font-semibold">LoomAI Marketing</span>
+                    <span class="text-lg font-semibold">LoomAI</span>
                 </a>
 
-                <!-- Social Links -->
                 <div class="flex items-center gap-6">
-                    <a href="https://t.me/loomai" target="_blank" class="text-gray-500 hover:text-white transition-colors">
+                    <a href="https://t.me/loomaim" target="_blank" class="text-gray-500 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.154.234.169.357.015.122.034.281.019.434z"/>
                         </svg>
@@ -510,9 +603,8 @@
                     </a>
                 </div>
 
-                <!-- Copyright -->
                 <p class="text-gray-600 text-sm">
-                    © 2025 LoomAI. All rights reserved.
+                    © 2026 LoomAI. All rights reserved.
                 </p>
             </div>
         </div>
@@ -523,7 +615,6 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -542,7 +633,6 @@
             observer.observe(el);
         });
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -553,7 +643,6 @@
             });
         });
 
-        // Navbar background on scroll
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
