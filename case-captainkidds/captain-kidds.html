@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Captain Kidd's Fish Market & Restaurant — Redondo Beach's Freshest Seafood Since 1976</title>
+<meta name="description" content="A fish market and restaurant in King Harbor, Redondo Beach. Pick your seafood fresh from the case and have it cooked to order, or order off the kitchen menu. Serving the South Bay since 1976.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E2126;
+    --teal:#123B36;
+    --teal-2:#0F2D29;
+    --brass:#B9894C;
+    --brass-light:#E3C081;
+    --shell:#F3EEE2;
+    --paper:#FBF8F1;
+    --rust:#A8431F;
+    --rust-dark:#84331A;
+    --charcoal:#221E19;
+    --line:rgba(14,33,38,0.14);
+    --line-light:rgba(251,248,241,0.2);
+    --shadow: 0 20px 44px -22px rgba(14,33,38,0.4);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--shell); color:var(--charcoal);
+    font-family:'Public Sans', sans-serif; font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1220px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3,h4{font-family:'Fraunces', serif; margin:0; font-weight:600; letter-spacing:-0.01em;}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; text-transform:uppercase; font-size:12px; letter-spacing:0.16em; font-weight:500;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    text-decoration:none; padding:14px 26px; border-radius:2px; border:1px solid transparent;
+    cursor:pointer; transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--rust); color:var(--paper);}
+  .btn-primary:hover{background:var(--rust-dark);}
+  .btn-ghost{background:transparent; color:var(--paper); border-color:var(--line-light);}
+  .btn-ghost:hover{border-color:var(--brass-light); color:var(--brass-light);}
+  .btn-dark{background:var(--ink); color:var(--paper);}
+  .btn-dark:hover{background:#081215;}
+  .btn-outline{background:transparent; color:var(--ink); border-color:var(--line);}
+  .btn-outline:hover{border-color:var(--ink);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:70;
+    background:rgba(14,33,38,0.97); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-light);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--paper);}
+  .brand .logo-chip{
+    width:44px; height:44px; border-radius:50%; overflow:hidden; flex:none;
+    background:var(--paper); display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line-light);
+  }
+  .brand .logo-chip img{width:100%; height:100%; object-fit:cover;}
+  .brand .word{line-height:1.08;}
+  .brand .word b{display:block; font-family:'Fraunces', serif; font-size:18px; color:var(--paper); font-weight:600;}
+  .brand .word span{display:block; font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.18em; color:var(--brass-light); text-transform:uppercase; margin-top:2px;}
+  nav.links{display:flex; align-items:center; gap:30px;}
+  nav.links a{text-decoration:none; color:var(--paper); opacity:0.82; font-size:14px; position:relative; padding:4px 0;}
+  nav.links a:hover{opacity:1;}
+  nav.links a::after{content:""; position:absolute; left:0; right:0; bottom:-3px; height:1px; background:var(--brass-light); transform:scaleX(0); transform-origin:left; transition:transform .2s ease;}
+  nav.links a:hover::after{transform:scaleX(1);}
+  .nav-right{display:flex; align-items:center; gap:16px;}
+  .nav-phone{display:flex; flex-direction:column; align-items:flex-end; color:var(--paper);}
+  .nav-phone small{font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.14em; opacity:0.6; text-transform:uppercase;}
+  .nav-phone strong{font-size:14.5px; font-weight:600;}
+  .burger{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{display:block; width:22px; height:2px; background:var(--paper); margin:5px 0;}
+
+  /* ---------- HERO (editorial, full-bleed photo) ---------- */
+  .hero{position:relative; color:var(--paper); overflow:hidden; min-height:88vh; display:flex; flex-direction:column;}
+  .hero-bg{position:absolute; inset:0; z-index:0;}
+  .hero-bg img{width:100%; height:100%; object-fit:cover; transition:opacity .5s ease;}
+  .hero-bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,33,38,0.72) 0%, rgba(14,33,38,0.32) 38%, rgba(14,33,38,0.55) 72%, rgba(14,33,38,0.92) 100%);
+  }
+  .hero-top{position:relative; z-index:2; padding:36px 0 0;}
+  .hero-badge{
+    position:absolute; top:34px; right:32px; z-index:3;
+    background:var(--paper); color:var(--ink); border-radius:8px; padding:12px 16px;
+    display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); max-width:230px;
+  }
+  .hero-badge .icon{font-size:18px; flex:none;}
+  .hero-badge .txt{font-size:12px; line-height:1.35; font-weight:600;}
+  .hero-body{position:relative; z-index:2; flex:1; display:flex; align-items:flex-end; padding:60px 0 0;}
+  .hero-grid{display:grid; grid-template-columns:1.3fr 0.9fr; gap:40px; width:100%; align-items:end; padding-bottom:52px;}
+  .hero-copy .eyebrow{color:var(--brass-light); font-style:italic; font-family:'Fraunces', serif; text-transform:none; letter-spacing:0.02em; font-size:16px; font-weight:500; margin-bottom:18px;}
+  .hero-copy h1{font-size:clamp(36px, 5vw, 62px); line-height:1.03; font-weight:600;}
+  .hero-cta{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .hero-side p{font-size:15.5px; color:rgba(251,248,241,0.86); max-width:400px; margin:0 0 20px;}
+  .hero-stats{display:flex; gap:26px; padding-top:20px; border-top:1px solid var(--line-light); flex-wrap:wrap;}
+  .hero-stats div b{display:block; font-family:'Fraunces', serif; font-size:23px; color:var(--brass-light);}
+  .hero-stats div span{font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(251,248,241,0.6);}
+
+  .hero-rail{position:relative; z-index:2; display:flex; align-items:center; gap:16px; padding:22px 0 32px; border-top:1px solid var(--line-light);}
+  .hero-thumbs{display:flex; gap:10px;}
+  .hero-thumb{width:64px; height:48px; border-radius:4px; overflow:hidden; cursor:pointer; border:1.5px solid transparent; opacity:0.6; transition:opacity .2s ease, border-color .2s ease;}
+  .hero-thumb.active{opacity:1; border-color:var(--brass-light);}
+  .hero-thumb img{width:100%; height:100%; object-fit:cover;}
+  .hero-rail-label{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(251,248,241,0.6);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:104px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{color:var(--rust); margin-bottom:14px; display:flex; align-items:center; gap:10px;}
+  .section-head .eyebrow::before{content:""; width:22px; height:1px; background:var(--rust); display:inline-block;}
+  .section-head h2{font-size:clamp(28px, 3.4vw, 40px); color:var(--ink);}
+  .section-head p{margin-top:16px; font-size:16px; color:#4b4536; max-width:520px;}
+  .section-alt{background:var(--ink); color:var(--paper);}
+  .section-alt .section-head h2{color:var(--paper);}
+  .section-alt .section-head p{color:rgba(251,248,241,0.72);}
+  .section-alt .eyebrow{color:var(--brass-light) !important;}
+  .section-alt .eyebrow::before{background:var(--brass-light) !important;}
+
+  /* ---------- TWO WAYS ---------- */
+  .ways-grid{display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line);}
+  .way-card{background:var(--paper); padding:0;}
+  .way-media{aspect-ratio:16/10; overflow:hidden;}
+  .way-media img{width:100%; height:100%; object-fit:cover;}
+  .way-content{padding:36px;}
+  .way-card .way-num{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.1em; color:var(--brass); text-transform:uppercase;}
+  .way-card h3{font-size:25px; margin-top:12px; color:var(--ink);}
+  .way-card p.desc{color:#514b3d; margin-top:10px; font-size:15px;}
+  .way-list{list-style:none; padding:0; margin:20px 0 0; display:flex; flex-direction:column; gap:9px;}
+  .way-list li{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#3c3729;}
+  .way-list li::before{content:"—"; color:var(--rust); flex:none;}
+  .way-content .btn{margin-top:24px;}
+
+  /* ---------- ORDER WAYS (4 cards) ---------- */
+  .order-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .order-card{background:var(--paper); padding:30px 26px; display:flex; flex-direction:column;}
+  .order-card .oi{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--brass); text-transform:uppercase;}
+  .order-card h4{font-size:18.5px; margin-top:14px; color:var(--ink); line-height:1.25;}
+  .order-card p{font-size:13.8px; color:#514b3d; margin-top:10px; flex:1;}
+  .order-card ol{margin:12px 0 0; padding-left:18px; font-size:13px; color:#514b3d;}
+  .order-card ol li{margin-bottom:4px;}
+
+  /* ---------- MARKET CATALOG ---------- */
+  .cat-tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;}
+  .cat-tab{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:10px 18px; border-radius:999px; border:1px solid var(--line); background:transparent; cursor:pointer; color:var(--ink);
+    transition:all .15s ease;
+  }
+  .cat-tab.active, .cat-tab:hover{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .catalog-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;}
+  .item-card{background:var(--paper); border:1px solid var(--line); border-radius:4px; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease;}
+  .item-card:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
+  .item-img{aspect-ratio:4/3; overflow:hidden; position:relative; background:var(--line);}
+  .item-img img{width:100%; height:100%; object-fit:cover;}
+  .badge-season{
+    position:absolute; top:10px; left:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--paper); color:var(--rust); padding:4px 8px; border-radius:999px;
+  }
+  .item-body{padding:16px 18px 18px;}
+  .item-body h4{font-size:16.5px; color:var(--ink); line-height:1.2; margin-bottom:8px;}
+  .item-meta .row{display:flex; gap:6px; font-size:12.3px; color:#514b3d; margin-bottom:3px;}
+  .item-meta .row b{font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--brass); min-width:52px; font-weight:600;}
+  .catalog-note{margin-top:34px; font-size:13px; color:#6b6252; border-top:1px solid var(--line); padding-top:20px; display:flex; gap:10px; align-items:flex-start; max-width:820px;}
+
+  /* ---------- STEAMED / LIVE TANK (photo section) ---------- */
+  .steam{position:relative; border-radius:6px; overflow:hidden; min-height:420px; display:flex; align-items:flex-end;}
+  .steam img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .steam::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(14,33,38,0.9) 0%, rgba(14,33,38,0.55) 55%, rgba(14,33,38,0.15) 100%);}
+  .steam-content{position:relative; z-index:2; padding:44px; color:var(--paper); max-width:560px;}
+  .steam-content h3{font-size:clamp(24px,3vw,32px); color:var(--paper);}
+  .steam-content p{margin-top:12px; color:rgba(251,248,241,0.88); font-size:15px;}
+  .steam-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:22px;}
+  .stag{background:rgba(251,248,241,0.95); color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase; padding:9px 14px; border-radius:999px;}
+
+  /* ---------- CATERING ---------- */
+  .catering-wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:0; border:1px solid var(--line); border-radius:6px; overflow:hidden;}
+  .catering-visual{position:relative;}
+  .catering-visual img{width:100%; height:100%; object-fit:cover; min-height:380px;}
+  .catering-copy{padding:44px; background:var(--paper);}
+  .catering-list{list-style:none; padding:0; margin:24px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .catering-list li{font-size:14px; padding:14px 16px; background:var(--shell); border:1px solid var(--line); border-radius:4px; color:#3c3729;}
+  .catering-list li b{display:block; font-family:'Fraunces', serif; font-size:15.5px; color:var(--ink); margin-bottom:4px; font-weight:600;}
+
+  /* ---------- ABOUT ---------- */
+  .about-wrap{display:grid; grid-template-columns:0.95fr 1.05fr; gap:56px; align-items:center;}
+  .about-media{border-radius:6px; overflow:hidden;}
+  .about-media img{width:100%; aspect-ratio:4/5; object-fit:cover;}
+  .about-copy p{font-size:15.5px; color:rgba(251,248,241,0.82); margin-top:16px;}
+  .about-copy .signature{margin-top:26px; font-family:'Fraunces', serif; font-style:italic; font-size:19px; color:var(--brass-light);}
+  .about-stats{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px;}
+  .stat-card{border:1px solid var(--line-light); border-radius:4px; padding:20px; background:rgba(251,248,241,0.04);}
+  .stat-card b{display:block; font-family:'Fraunces', serif; font-size:30px; color:var(--brass-light);}
+  .stat-card span{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(251,248,241,0.62);}
+
+  /* ---------- GALLERY STRIP ---------- */
+  .gallery-grid{display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:120px; gap:6px;}
+  .gallery-grid a{display:block; overflow:hidden; position:relative;}
+  .gallery-grid img{width:100%; height:100%; object-fit:cover; transition:transform .35s ease;}
+  .gallery-grid a:hover img{transform:scale(1.06);}
+  .gallery-grid .g-wide{grid-column:span 2; grid-row:span 2;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:820px;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:22px 0; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:'Fraunces', serif; font-size:18px; color:var(--ink);}
+  .faq-q .plus{font-family:'IBM Plex Mono', monospace; font-size:19px; color:var(--rust); transition:transform .2s ease; flex:none;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .28s ease;}
+  .faq-a p{padding:0 0 22px; margin:0; max-width:620px; color:#4a4437; font-size:14.5px;}
+
+  /* ---------- VISIT ---------- */
+  .visit-wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  .visit-map{aspect-ratio:4/3; border-radius:6px; overflow:hidden; border:1px solid var(--line);}
+  .visit-map iframe{width:100%; height:100%; border:0; filter:grayscale(15%);}
+  .visit-info h3{font-size:24px; color:var(--ink); margin-bottom:22px;}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:6px;}
+  .hours-table td{padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .hours-table td:first-child{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--brass); width:150px;}
+  .contact-block{margin-top:26px; display:flex; flex-direction:column; gap:8px;}
+  .contact-block a{text-decoration:none; font-size:16px; color:var(--ink); font-weight:600;}
+  .social-row{display:flex; gap:12px; margin-top:22px;}
+  .social-row a{width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:11px;}
+  .social-row a:hover{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:rgba(251,248,241,0.7); padding:60px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;}
+  .footer-brand .brand{margin-bottom:16px;}
+  .footer-brand p{font-size:13.5px; max-width:280px; color:rgba(251,248,241,0.6);}
+  .footer-col h5{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--brass-light); margin-bottom:16px;}
+  .footer-col ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  .footer-col a{text-decoration:none; font-size:13.5px; color:rgba(251,248,241,0.72);}
+  .footer-col a:hover{color:var(--paper);}
+  .footer-bottom{margin-top:50px; padding-top:22px; border-top:1px solid var(--line-light); display:flex; justify-content:space-between; font-size:12px; color:rgba(251,248,241,0.5); flex-wrap:wrap; gap:10px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1020px){
+    nav.links{display:none;}
+    .burger{display:block;}
+    .nav-phone{display:none;}
+    .hero{min-height:auto;}
+    .hero-grid{grid-template-columns:1fr; padding-bottom:36px;}
+    .hero-badge{position:static; margin:0 32px 18px; max-width:none;}
+    .hero-top{padding:0;}
+    .ways-grid{grid-template-columns:1fr;}
+    .order-grid{grid-template-columns:1fr 1fr;}
+    .catalog-grid{grid-template-columns:1fr 1fr;}
+    .catering-wrap{grid-template-columns:1fr;}
+    .catering-visual img{min-height:260px;}
+    .about-wrap{grid-template-columns:1fr;}
+    .visit-wrap{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr; row-gap:32px;}
+    .gallery-grid{grid-template-columns:repeat(3,1fr); grid-auto-rows:100px;}
+  }
+  @media (max-width: 620px){
+    section{padding:64px 0;}
+    .wrap{padding:0 22px;}
+    .catalog-grid{grid-template-columns:1fr 1fr;}
+    .order-grid{grid-template-columns:1fr;}
+    .catering-list{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:18px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid .g-wide{grid-column:span 1; grid-row:span 1;}
+    .hero-rail{flex-wrap:wrap;}
+  }
+
+  [data-reveal]{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  [data-reveal].in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="logo-chip">
+        <img src="https://static.wixstatic.com/media/82d1bb_1dca17e51fc1495b9e9fe31de1d74182~mv2.jpg/v1/fill/w_120,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CKLogo_CrabCircle_1_12_16-page-001.jpg" alt="Captain Kidd's Fish Market & Restaurant logo">
+      </span>
+      <span class="word"><b>Captain Kidd's</b><span>Fish Market &amp; Restaurant · Est. 1976</span></span>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#market">Market</a>
+      <a href="#order">Restaurant</a>
+      <a href="#catering">Catering</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <div class="nav-right">
+      <div class="nav-phone">
+        <small>Call the Market</small>
+        <strong>(310) 372-7703</strong>
+      </div>
+      <a href="https://order.toasttab.com/online/captain-kidds-fish-market-restaurant-new-209-n-harbor-dr" target="_blank" rel="noopener" class="btn btn-primary">Order Online</a>
+      <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-bg">
+      <img id="heroImg" src="https://static.wixstatic.com/media/82d1bb_2f7a9be9cfeb449a9ac86bd6e1da6b77~mv2.jpg/v1/fill/w_1800,h_1400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_2f7a9be9cfeb449a9ac86bd6e1da6b77~mv2.jpg" alt="The fresh fish case at Captain Kidd's Fish Market, King Harbor, Redondo Beach">
+    </div>
+
+    <div class="hero-badge" data-reveal>
+      <span class="icon">★</span>
+      <span class="txt">Voted freshest seafood<br>in the South Bay, year after year</span>
+    </div>
+
+    <div class="hero-body">
+      <div class="wrap hero-grid">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow">Redondo Beach's Freshest Seafood</div>
+          <h1>Pick your catch.<br>We'll cook it your way.</h1>
+          <div class="hero-cta">
+            <a href="#market" class="btn btn-primary">Shop the Fish Market</a>
+            <a href="#order" class="btn btn-ghost">See the Restaurant Menu</a>
+          </div>
+        </div>
+        <div class="hero-side" data-reveal>
+          <p>A fish market and restaurant on King Harbor, with breathtaking views and an extensive seafood menu. Select your seafood fresh from the case or order off the kitchen menu — then enjoy a sunset dinner from one of our three patios, including our dog-friendly deck.</p>
+          <div class="hero-stats">
+            <div><b>1976</b><span>Serving the South Bay</span></div>
+            <div><b>3</b><span>Harborview patios</span></div>
+            <div><b>Daily</b><span>Fish delivered &amp; filleted</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap hero-rail" data-reveal>
+      <span class="hero-rail-label">The Market ·</span>
+      <div class="hero-thumbs">
+        <button class="hero-thumb active" data-img="https://static.wixstatic.com/media/82d1bb_2f7a9be9cfeb449a9ac86bd6e1da6b77~mv2.jpg/v1/fill/w_1800,h_1400,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_2f7a9be9cfeb449a9ac86bd6e1da6b77~mv2.jpg">
+          <img src="https://static.wixstatic.com/media/82d1bb_2f7a9be9cfeb449a9ac86bd6e1da6b77~mv2.jpg/v1/fit/w_160,h_120,q_90,enc_avif,quality_auto/82d1bb_2f7a9be9cfeb449a9ac86bd6e1da6b77~mv2.jpg" alt="Fish case">
+        </button>
+        <button class="hero-thumb" data-img="https://static.wixstatic.com/media/82d1bb_9923241e682d4a898f4dd17c7c969788~mv2.jpg/v1/fill/w_1800,h_1400,fp_0.45_0.11,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_9923241e682d4a898f4dd17c7c969788~mv2.jpg">
+          <img src="https://static.wixstatic.com/media/82d1bb_9923241e682d4a898f4dd17c7c969788~mv2.jpg/v1/fit/w_160,h_120,q_90,enc_avif,quality_auto/82d1bb_9923241e682d4a898f4dd17c7c969788~mv2.jpg" alt="Crab tanks">
+        </button>
+        <button class="hero-thumb" data-img="https://static.wixstatic.com/media/82d1bb_d307a6cfe7b64807bcc966d02836abd1~mv2.jpg/v1/fill/w_1800,h_1400,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_d307a6cfe7b64807bcc966d02836abd1~mv2.jpg">
+          <img src="https://static.wixstatic.com/media/82d1bb_d307a6cfe7b64807bcc966d02836abd1~mv2.jpg/v1/fit/w_160,h_120,q_90,enc_avif,quality_auto/82d1bb_d307a6cfe7b64807bcc966d02836abd1~mv2.jpg" alt="King crab">
+        </button>
+        <button class="hero-thumb" data-img="https://static.wixstatic.com/media/82d1bb_7a109f5d35f54cc190b93aba59e1f365~mv2.jpg/v1/fill/w_1800,h_1400,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_7a109f5d35f54cc190b93aba59e1f365~mv2.jpg">
+          <img src="https://static.wixstatic.com/media/82d1bb_7a109f5d35f54cc190b93aba59e1f365~mv2.jpg/v1/fit/w_160,h_120,q_90,enc_avif,quality_auto/82d1bb_7a109f5d35f54cc190b93aba59e1f365~mv2.jpg" alt="Cooked fish plate">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO WAYS -->
+  <section id="ways">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Market &amp; Restaurant, One Roof</div>
+        <h2>Take it home, or let our kitchen do the work</h2>
+        <p>Since we're both a fish market and a restaurant, you can take your seafood to go and cook it at home, or let us cook it for you and dine with us. Bring the family and let our family take care of you.</p>
+      </div>
+      <div class="ways-grid">
+        <div class="way-card" data-reveal>
+          <div class="way-media"><img src="https://static.wixstatic.com/media/82d1bb_620a805977e648dfb62378e3285acc79~mv2.jpg/v1/fill/w_900,h_560,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_620a805977e648dfb62378e3285acc79~mv2.jpg" alt="The fish case at Captain Kidd's Fish Market"></div>
+          <div class="way-content">
+            <div class="way-num">The Market</div>
+            <h3>Select your cut, straight from the case</h3>
+            <p class="desc">We're proud to offer the finest fish from both local and international waters, delivered daily to our market.</p>
+            <ul class="way-list">
+              <li>Fish is delivered daily and filleted daily</li>
+              <li>Local and imported fish, plus seasonal specialty catches</li>
+              <li>Live crab, lobster, clams and mussels from our tanks</li>
+            </ul>
+            <a href="#market" class="btn btn-dark">Browse the Market</a>
+          </div>
+        </div>
+        <div class="way-card" data-reveal>
+          <div class="way-media"><img src="https://static.wixstatic.com/media/82d1bb_a041368227f8421ba5fd1c743ba95141~mv2.jpg/v1/fill/w_900,h_560,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_a041368227f8421ba5fd1c743ba95141~mv2.jpg" alt="New England clam chowder at Captain Kidd's"></div>
+          <div class="way-content">
+            <div class="way-num">The Restaurant</div>
+            <h3>Indoor and outdoor seating over King Harbor</h3>
+            <p class="desc">A casual, family-friendly restaurant offering a unique experience where you can select seafood fresh from our market and have it cooked to order.</p>
+            <ul class="way-list">
+              <li>Three patios overlooking the harbor, plus a dog-friendly patio</li>
+              <li>Order off the regular menu or the daily specials</li>
+              <li>Build your own plate from the fish case</li>
+            </ul>
+            <a href="#order" class="btn btn-dark">View the Menu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section id="order" style="background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Four Ways to Order</div>
+        <h2>Every visit, however you'd like to eat</h2>
+        <p>Customers can order off the kitchen menu or select their cut of fish directly from the fish case — it's your call, every time.</p>
+      </div>
+      <div class="order-grid">
+        <div class="order-card" data-reveal>
+          <div class="oi">Build Your Own</div>
+          <h4>Custom-design your plate</h4>
+          <p>Pick and choose from our extensive selection of fresh fish and succulent shellfish, then finish it your way.</p>
+          <ol>
+            <li>Choose your fish or shellfish</li>
+            <li>Choose how it's prepared</li>
+            <li>Add two side dishes</li>
+          </ol>
+        </div>
+        <div class="order-card" data-reveal>
+          <div class="oi">Kitchen Menu</div>
+          <h4>Order from our regular menu</h4>
+          <p>Fresh grilled fish plates, fish sandwiches, fish &amp; chips, and more — cooked simply to highlight natural flavor.</p>
+        </div>
+        <div class="order-card" data-reveal>
+          <div class="oi">Chef's Board</div>
+          <h4>Order our daily specials</h4>
+          <p>New selections arrive regularly — ask what's running today, from lobster and crab specials to seasonal catches.</p>
+        </div>
+        <div class="order-card" data-reveal>
+          <div class="oi">Straight From the Tank</div>
+          <h4>Pick it live, we'll steam it</h4>
+          <p>Choose your live crabs, lobsters, clams and mussels from the tank and have them steamed, free of charge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET CATALOG -->
+  <section id="market">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Fresh Seafood Market Items</div>
+        <h2>What's on ice today</h2>
+        <p>Our seafood is delivered daily and filleted daily. Each item is marked with its origin, whether it's wild or farmed, and how our market recommends cooking it.</p>
+      </div>
+
+      <div class="cat-tabs" role="tablist" aria-label="Market categories">
+        <button class="cat-tab active" data-cat="all">All</button>
+        <button class="cat-tab" data-cat="fin">Market Fish</button>
+        <button class="cat-tab" data-cat="shell">Crab &amp; Lobster</button>
+        <button class="cat-tab" data-cat="raw">Oysters, Scallops &amp; Shrimp</button>
+        <button class="cat-tab" data-cat="whole">Whole Market Fish</button>
+      </div>
+
+      <div class="catalog-grid" id="catalogGrid">
+        <!-- MARKET FISH -->
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_a69d0df446c149a5b72490dee610305a~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_a69d0df446c149a5b72490dee610305a~mv2.jpg" alt="Local Halibut Fillet"></div>
+          <div class="item-body">
+            <h4>Local Halibut Fillet</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>California — fresh, wild</span></div>
+              <div class="row"><b>Cooking</b><span>Tempura or sautéed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_fe989d9be4d74b31b968f7ecb4bb638b~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_fe989d9be4d74b31b968f7ecb4bb638b~mv2.jpg" alt="King Salmon"><span class="badge-season">Seasonal</span></div>
+          <div class="item-body">
+            <h4>King Salmon</h4>
+            <div class="item-meta"><div class="row"><b>Type</b><span>Wild</span></div></div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_6f5fa260635b4c7b9dca29b560a1fb9a~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_6f5fa260635b4c7b9dca29b560a1fb9a~mv2.jpg" alt="Swordfish"></div>
+          <div class="item-body">
+            <h4>Swordfish</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>Hawaii — fresh, wild</span></div>
+              <div class="row"><b>Cooking</b><span>Charbroiled</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_64ae0843c2dd4edfb512041bf83207f8~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_64ae0843c2dd4edfb512041bf83207f8~mv2.jpg" alt="Opah"></div>
+          <div class="item-body">
+            <h4>Opah</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>CA, HI, Mexico &amp; Fiji</span></div>
+              <div class="row"><b>Cooking</b><span>BBQ, bake, broil or kabob</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_abbd5cb180b04a92bc82547660ff6aa9~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_abbd5cb180b04a92bc82547660ff6aa9~mv2.jpg" alt="Local Sea Bass"></div>
+          <div class="item-body">
+            <h4>Sea Bass — Local</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>California — fresh, wild</span></div>
+              <div class="row"><b>Cooking</b><span>Charbroiled or sautéed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_062b494e837146ed9fc8092a8591cb97~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_062b494e837146ed9fc8092a8591cb97~mv2.jpg" alt="Yellowtail - Local"></div>
+          <div class="item-body">
+            <h4>Yellowtail — Local</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>San Diego, CA — wild</span></div>
+              <div class="row"><b>Cooking</b><span>Charbroiled</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_2ffa3a8853f944b6991d5bd63006a298~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_2ffa3a8853f944b6991d5bd63006a298~mv2.jpg" alt="Yellowfin Tuna Ahi-Saku"></div>
+          <div class="item-body">
+            <h4>Yellowfin Tuna, Ahi-Saku</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>Hawaii — wild</span></div>
+              <div class="row"><b>Cooking</b><span>Seared or sashimi</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="fin" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_0903b60403df400795fb8682fd971325~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_0903b60403df400795fb8682fd971325~mv2.jpg" alt="Black Cod"><span class="badge-season">Seasonal</span></div>
+          <div class="item-body"><h4>Black Cod</h4></div>
+        </div>
+
+        <!-- CRAB & LOBSTER -->
+        <div class="item-card" data-cat="shell" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_2fd09b26ac494a12a1a6de173170d63d~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_2fd09b26ac494a12a1a6de173170d63d~mv2.jpg" alt="Maine Lobster Live"></div>
+          <div class="item-body">
+            <h4>Maine Lobster (Live)</h4>
+            <div class="item-meta"><div class="row"><b>Steamed</b><span>Free of charge</span></div></div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="shell" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_3751d8b1a92d4805a93cc2f2056bc853~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_3751d8b1a92d4805a93cc2f2056bc853~mv2.jpg" alt="Northern Dungeness Crab"><span class="badge-season">Seasonal</span></div>
+          <div class="item-body">
+            <h4>Northern Dungeness Crab</h4>
+            <div class="item-meta">
+              <div class="row"><b>Type</b><span>Fresh, wild</span></div>
+              <div class="row"><b>Cooking</b><span>Boil / steam</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="shell" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_e5fce98966c5441c96477042405c0afc~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_e5fce98966c5441c96477042405c0afc~mv2.jpg" alt="King Crab Legs"></div>
+          <div class="item-body">
+            <h4>King Crab Legs</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>Alaska — fresh/frozen, wild</span></div>
+              <div class="row"><b>Cooking</b><span>Charbroiled or steamed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="shell" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_4abf40561c5c4d47a9dcc62bffe224ab~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_4abf40561c5c4d47a9dcc62bffe224ab~mv2.jpg" alt="Snow Crab Legs"></div>
+          <div class="item-body">
+            <h4>Snow Crab Legs</h4>
+            <div class="item-meta"><div class="row"><b>Origin</b><span>Russia — fresh/frozen, wild</span></div></div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="shell" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_80700d7f2f8f4c3897a33944ffbf5d87~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_80700d7f2f8f4c3897a33944ffbf5d87~mv2.jpg" alt="Local Crab"></div>
+          <div class="item-body">
+            <h4>Local Crab</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>Santa Barbara, CA</span></div>
+              <div class="row"><b>Cooking</b><span>Boil / steam</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="shell" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_9d17845b6c3b471a930ff700a9129c50~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_9d17845b6c3b471a930ff700a9129c50~mv2.jpg" alt="Pacific Lobster Tails Cooked"><span class="badge-season">Seasonal</span></div>
+          <div class="item-body"><h4>Pacific Lobster Tails (Cooked)</h4></div>
+        </div>
+
+        <!-- RAW BAR -->
+        <div class="item-card" data-cat="raw" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_194ea4a4e1a74157bc7516e59dd7b15e~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_194ea4a4e1a74157bc7516e59dd7b15e~mv2.jpg" alt="Oysters"></div>
+          <div class="item-body">
+            <h4>Oysters</h4>
+            <div class="item-meta">
+              <div class="row"><b>Varieties</b><span>Blue Point, Fanny Bay, Kumiai, Willapearls +seasonal</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="raw" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_0356bb6919704e35a55eb6f80eef7ffb~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_0356bb6919704e35a55eb6f80eef7ffb~mv2.jpg" alt="Scallops"></div>
+          <div class="item-body">
+            <h4>Scallops</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>Canada — fresh/frozen, wild</span></div>
+              <div class="row"><b>Cooking</b><span>Grilled or sautéed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="raw" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_57426eda9776444d8722336539ec2e3c~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_57426eda9776444d8722336539ec2e3c~mv2.jpg" alt="Shrimp Raw"></div>
+          <div class="item-body">
+            <h4>Shrimp (Raw)</h4>
+            <div class="item-meta">
+              <div class="row"><b>Sizes</b><span>U10 / U16 / 21–25</span></div>
+              <div class="row"><b>Origin</b><span>Mexico — fresh/frozen, wild</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="raw" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_30bb9bdcdac442c5b3b1366040c5e839~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_30bb9bdcdac442c5b3b1366040c5e839~mv2.jpg" alt="Kabob Combo"></div>
+          <div class="item-body">
+            <h4>Kabob (Combo)</h4>
+            <div class="item-meta">
+              <div class="row"><b>Contains</b><span>Alaskan cod, shrimp, scallops, pineapple, peppers</span></div>
+              <div class="row"><b>Cooking</b><span>Charbroiled</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="raw" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_34cc0ac57945413da55ef79d88fe45fe~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_34cc0ac57945413da55ef79d88fe45fe~mv2.jpg" alt="Mussels Green Lip"></div>
+          <div class="item-body"><h4>Mussels — Green Lip</h4></div>
+        </div>
+        <div class="item-card" data-cat="raw" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_42627e24ac294203b71754617dde1c20~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_42627e24ac294203b71754617dde1c20~mv2.jpg" alt="Clams Little Neck"></div>
+          <div class="item-body"><h4>Clams — Little Neck</h4></div>
+        </div>
+
+        <!-- WHOLE FISH -->
+        <div class="item-card" data-cat="whole" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_6f865a02472c4ee7b997d4727463fad1~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_6f865a02472c4ee7b997d4727463fad1~mv2.jpg" alt="Whole Red Snapper"></div>
+          <div class="item-body">
+            <h4>Whole Red Snapper</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>Mexico — wild</span></div>
+              <div class="row"><b>Cooking</b><span>Deep fried or charbroiled</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="whole" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_1b154852f671492b948e090a82280807~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_1b154852f671492b948e090a82280807~mv2.jpg" alt="Whole Trout"></div>
+          <div class="item-body"><h4>Whole Trout</h4></div>
+        </div>
+        <div class="item-card" data-cat="whole" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_167c344f53fa49f1aeb52e6170f58360~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_167c344f53fa49f1aeb52e6170f58360~mv2.jpg" alt="Whole Pompano"></div>
+          <div class="item-body">
+            <h4>Whole Pompano</h4>
+            <div class="item-meta">
+              <div class="row"><b>Origin</b><span>China — fresh/frozen, farmed</span></div>
+              <div class="row"><b>Cooking</b><span>Deep fried or charbroiled</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="item-card" data-cat="whole" data-reveal>
+          <div class="item-img"><img src="https://static.wixstatic.com/media/82d1bb_5a266b6630ff404489cdc4fd44058e88~mv2.jpg/v1/fill/w_500,h_375,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_5a266b6630ff404489cdc4fd44058e88~mv2.jpg" alt="Whole Tilapia"></div>
+          <div class="item-body">
+            <h4>Whole Tilapia</h4>
+            <div class="item-meta"><div class="row"><b>Origin</b><span>China — farmed</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-note">
+        <span>＊</span>
+        <span>Some items may be temporarily unavailable due to seasonality, weather, or market shortages. Consuming raw or undercooked seafood may increase your risk of foodborne illness, especially with certain medical conditions.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEAMED / LIVE TANK -->
+  <section>
+    <div class="wrap">
+      <div class="steam" data-reveal>
+        <img src="https://static.wixstatic.com/media/82d1bb_9923241e682d4a898f4dd17c7c969788~mv2.jpg/v1/fill/w_1600,h_1000,fp_0.45_0.11,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_9923241e682d4a898f4dd17c7c969788~mv2.jpg" alt="Live crab tanks at Captain Kidd's Fish Market">
+        <div class="steam-content">
+          <div class="eyebrow" style="color:var(--brass-light);">Straight From the Tank</div>
+          <h3>Pick it live. We'll steam it, free of charge.</h3>
+          <p>Choose your live crabs, lobsters, clams and mussels right from the tank, and we'll have them steamed at no extra cost — no charge for the steam, just for the catch.</p>
+          <div class="steam-tags">
+            <span class="stag">Live Crab</span>
+            <span class="stag">Live Lobster</span>
+            <span class="stag">Mussels</span>
+            <span class="stag">Clams</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING -->
+  <section id="catering">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:36px;" data-reveal>
+        <div class="eyebrow">Catering</div>
+        <h2>Bring King Harbor to your next event</h2>
+      </div>
+      <div class="catering-wrap" data-reveal>
+        <div class="catering-visual">
+          <img src="https://static.wixstatic.com/media/82d1bb_8e1c839c47634ca3b349394b1e6437d8~mv2.jpg/v1/fill/w_900,h_1000,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_8e1c839c47634ca3b349394b1e6437d8~mv2.jpg" alt="Pacific lobster tails prepared for catering at Captain Kidd's">
+        </div>
+        <div class="catering-copy">
+          <p style="font-size:16px; color:#3c3729; max-width:480px;">Looking to cater for an event? Serve your guests the freshest seafood — from shrimp cocktail trays to sashimi platters. Captain Kidd's is more than a restaurant; we're a trusted fish market offering a wide selection of fresh seafood sourced daily.</p>
+          <ul class="catering-list">
+            <li><b>Cold Trays</b>Shrimp cocktail, oysters, sashimi platters</li>
+            <li><b>Market Selections</b>Fresh fish and shellfish by the pound</li>
+            <li><b>Full Menu</b>See our printed catering brochure for pricing</li>
+            <li><b>Ordering</b>Call the market to place your order</li>
+          </ul>
+          <a href="https://www.captainkidds.com/_files/ugd/82d1bb_1e5927c6275042b983873aded2c1e86b.pdf" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:28px;">View Catering Menu (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section-alt">
+    <div class="wrap about-wrap">
+      <div class="about-media" data-reveal>
+        <img src="https://static.wixstatic.com/media/82d1bb_8bae87d3babd481fa3ccf0f480a656db~mv2.jpg/v1/fill/w_800,h_1000,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_8bae87d3babd481fa3ccf0f480a656db~mv2.jpg" alt="The front of Captain Kidd's Fish Market & Restaurant at King Harbor">
+      </div>
+      <div class="about-copy" data-reveal>
+        <div class="eyebrow" style="color:var(--brass-light);">Our Story</div>
+        <h2 style="color:var(--paper); font-size:clamp(28px,3.2vw,38px);">A landmark in King Harbor since 1976</h2>
+        <p>Captain Kidd's is a fish market and restaurant located in beautiful King Harbor in Redondo Beach. With its breathtaking views and extensive seafood menu, it's sure to provide a great dining experience.</p>
+        <p>Opened in 1976 by Harry and John Mills, Captain Kidd's has become a landmark seafood market and restaurant in Redondo Beach — a local gem where locals and tourists alike come to indulge in the freshest seafood from around the world.</p>
+        <p class="signature">— Serving the South Bay since 1976</p>
+        <div class="about-stats">
+          <div class="stat-card" data-reveal><b>1976</b><span>Founded by Harry &amp; John Mills</span></div>
+          <div class="stat-card" data-reveal><b>3</b><span>Harborview patios</span></div>
+          <div class="stat-card" data-reveal><b>Daily</b><span>Fish delivered &amp; filleted</span></div>
+          <div class="stat-card" data-reveal><b>1</b><span>Dog-friendly outdoor patio</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Gallery</div>
+        <h2>A look at the market and the kitchen</h2>
+      </div>
+      <div class="gallery-grid" data-reveal>
+        <a href="#" class="g-wide"><img src="https://static.wixstatic.com/media/82d1bb_2286e175128e414fb22600ff5e261c37~mv2.jpg/v1/fill/w_700,h_700,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_2286e175128e414fb22600ff5e261c37~mv2.jpg" alt="Fresh fish fillets on ice"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_5b60fd2620164e59be6f3ad6d898f7d4~mv2.jpg/v1/fill/w_400,h_260,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_5b60fd2620164e59be6f3ad6d898f7d4~mv2.jpg" alt="Crab and crab hammers"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_8f8f033e50df43368804779ccb56fe0d~mv2.jpg/v1/fill/w_400,h_260,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_8f8f033e50df43368804779ccb56fe0d~mv2.jpg" alt="Lobster tacos"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_5da21a03568b45aa82135c21306ba346~mv2.jpg/v1/fill/w_400,h_260,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_5da21a03568b45aa82135c21306ba346~mv2.jpg" alt="Fresh salmon at the market"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_a977455d23ea4ed58119b0ce5df89a85~mv2.jpg/v1/fill/w_400,h_260,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_a977455d23ea4ed58119b0ce5df89a85~mv2.jpg" alt="Cooked salmon fillet"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_7322b5f243a849039da2f3336affb323~mv2.jpg/v1/fill/w_400,h_260,fp_0.5_0.2,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_7322b5f243a849039da2f3336affb323~mv2.jpg" alt="Kids looking at the crab tanks"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_1b663ed3220f44baa8865434a36a446b~mv2.jpg/v1/fill/w_400,h_260,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_1b663ed3220f44baa8865434a36a446b~mv2.jpg" alt="Cooked fish plate"></a>
+        <a href="#"><img src="https://static.wixstatic.com/media/82d1bb_c79cbde7eee047a2b7638e2d735c8ae3~mv2.jpg/v1/fill/w_400,h_260,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/82d1bb_c79cbde7eee047a2b7638e2d735c8ae3~mv2.jpg" alt="Front of Captain Kidd's Fish Market"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="background:var(--paper); border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Frequently Asked</div>
+        <h2>Before you visit the market</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-q"><span>Can I buy fish to cook at home?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — every item in our market case is available to take home. Fish is delivered and filleted daily, and our counter staff can suggest a cooking method for any cut.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Is the steaming really free?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes. Pick your live crabs, lobsters, clams and mussels from the tank and we'll steam them for you at no additional charge.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Can I dine outside with my dog?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — of our three harborview patios, one is dog-friendly, so your pup is welcome to join you for a sunset dinner.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Do you take reservations?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>We seat guests on a walk-in basis. Order at the counter, whether you're dining in or taking your seafood to go.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Do you offer pickup and delivery?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — order ahead for pickup through our online ordering system, or have it delivered. Links are available at the top of this page.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Do you cater private events?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes — from shrimp cocktail trays to sashimi platters, see our catering menu or call the market to place an order for your event.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Do you sell gift cards?</span><span class="plus">+</span></button>
+          <div class="faq-a"><p>Yes, gift cards are available for purchase and can be used across both the market and the restaurant.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit">
+    <div class="wrap visit-wrap">
+      <div class="visit-map" data-reveal>
+        <iframe title="Captain Kidd's Fish Market & Restaurant location map" loading="lazy" src="https://maps.google.com/maps?q=209%20N%20Harbor%20Drive%2C%20Redondo%20Beach%2C%20CA%2090277&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+      <div class="visit-info">
+        <div class="eyebrow" style="color:var(--rust); margin-bottom:16px;">Find Us</div>
+        <h3>209 N Harbor Drive, Redondo Beach, CA 90277</h3>
+        <table class="hours-table">
+          <tr><td>Market</td><td>Sun–Thu 9am–8:30pm · Fri–Sat 9am–9pm</td></tr>
+          <tr><td>Restaurant</td><td>Sun–Thu 10am–8:30pm · Fri–Sat 10am–9pm</td></tr>
+        </table>
+        <div class="contact-block">
+          <a href="tel:+13103727703">(310) 372-7703</a>
+          <a href="https://maps.app.goo.gl/QaBvExLLqT64Y7jU9" target="_blank" rel="noopener">Get directions on Google Maps</a>
+        </div>
+        <div class="social-row">
+          <a href="https://www.facebook.com/CaptainKidds/" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://www.instagram.com/captainkidds/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://twitter.com/CaptainKiddsRB" target="_blank" rel="noopener" aria-label="Twitter">TW</a>
+          <a href="https://maps.google.com/?cid=13214918962522481824" target="_blank" rel="noopener" aria-label="Google Business">GB</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a href="#top" class="brand">
+        <span class="logo-chip">
+          <img src="https://static.wixstatic.com/media/82d1bb_1dca17e51fc1495b9e9fe31de1d74182~mv2.jpg/v1/fill/w_120,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CKLogo_CrabCircle_1_12_16-page-001.jpg" alt="Captain Kidd's logo">
+        </span>
+        <span class="word"><b>Captain Kidd's</b><span>Fish Market &amp; Restaurant · Est. 1976</span></span>
+      </a>
+      <p>A fish market and restaurant in King Harbor, Redondo Beach — serving the freshest seafood in the South Bay since 1976.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Menus</h5>
+      <ul>
+        <li><a href="#market">Market Items</a></li>
+        <li><a href="#order">Restaurant Menu</a></li>
+        <li><a href="#catering">Catering Menu</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Visit</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#visit">Location &amp; Hours</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Order &amp; More</h5>
+      <ul>
+        <li><a href="https://order.toasttab.com/online/captain-kidds-fish-market-restaurant-new-209-n-harbor-dr" target="_blank" rel="noopener">Order for Pickup</a></li>
+        <li><a href="https://swipeit.com/product/2229/captain-kidds-fish-market--restaurant" target="_blank" rel="noopener">Gift Cards</a></li>
+        <li><a href="#">Private Events / Fundraisers</a></li>
+        <li><a href="#">Jobs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Captain Kidd's Fish Market &amp; Restaurant · 209 N Harbor Drive, Redondo Beach, CA 90277</span>
+    <span>Independent design concept — not the official captainkidds.com site</span>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const links = document.querySelector('nav.links');
+  burger.addEventListener('click', () => {
+    const isOpen = links.style.display === 'flex';
+    if(isOpen){ links.style.display = 'none'; }
+    else{
+      links.style.display = 'flex';
+      links.style.position = 'absolute';
+      links.style.top = '62px'; links.style.left = '0'; links.style.right = '0';
+      links.style.background = 'rgba(14,33,38,0.98)';
+      links.style.flexDirection = 'column';
+      links.style.padding = '20px 32px'; links.style.gap = '18px';
+    }
+  });
+
+  // hero thumb swap
+  const heroImg = document.getElementById('heroImg');
+  document.querySelectorAll('.hero-thumb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.hero-thumb').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      heroImg.style.opacity = 0;
+      setTimeout(() => { heroImg.src = btn.dataset.img; heroImg.style.opacity = 1; }, 180);
+    });
+  });
+
+  // catalog filter
+  const tabs = document.querySelectorAll('.cat-tab');
+  const cards = document.querySelectorAll('.item-card');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      cards.forEach(card => { card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none'; });
+    });
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    if(item.classList.contains('open')){ a.style.maxHeight = a.scrollHeight + 'px'; }
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = 0; });
+      if(!isOpen){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
