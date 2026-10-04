@@ -1,0 +1,20 @@
+name: License scan
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  scancode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: scancode-inputs
+
+      - uses: aboutcode-org/scancode-action@beta
+        with:
+          pipelines: scan_codebase
+          output-formats: json xlsx spdx cyclonedx
