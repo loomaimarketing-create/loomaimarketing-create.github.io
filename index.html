@@ -361,6 +361,155 @@ footer{padding:22px 0; background:var(--ink);}
   .cta-actions .email-link{text-align:center;}
 }
 
+/* demo + cart */
+.price-choice.is-selected{
+  background:var(--lime);
+  color:var(--ink);
+  border-color:var(--lime);
+}
+.price-choice.is-selected:hover{background:var(--lime-dark);}
+
+.cart-bubble{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:160;
+  width:58px;
+  height:58px;
+  border:1px solid var(--ink);
+  border-radius:50%;
+  background:var(--lime);
+  color:var(--ink);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+  transform:translateY(20px) scale(.8);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .22s ease, transform .28s cubic-bezier(.22,.8,.2,1), background .2s ease;
+}
+.cart-bubble.visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+}
+.cart-bubble:hover{background:var(--lime-dark); transform:translateY(-3px) scale(1.02);}
+.cart-bubble svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.cart-dot{
+  position:absolute;
+  top:-3px;
+  right:-1px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#ef3030;
+  border:2px solid var(--bg);
+}
+
+.cart-panel{
+  position:fixed;
+  right:24px;
+  bottom:94px;
+  z-index:159;
+  width:min(360px, calc(100vw - 32px));
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 24px 60px rgba(0,0,0,.18);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px) scale(.98);
+  transition:opacity .2s ease, transform .25s ease, visibility 0s linear .25s;
+}
+.cart-panel.open{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+  transition:opacity .2s ease, transform .25s ease, visibility 0s linear 0s;
+}
+.cart-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;}
+.cart-head h3{font-size:1.05rem;}
+.cart-close{
+  width:32px;height:32px;border:1px solid var(--line);border-radius:50%;
+  background:transparent;cursor:pointer;font-size:1.1rem;line-height:1;
+}
+.cart-item{border-top:1px solid var(--line);padding-top:16px;}
+.cart-item-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;}
+.cart-item-sub{font-size:.82rem;color:var(--soft);margin-top:4px;line-height:1.5;}
+.cart-item-price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;margin-top:10px;}
+.cart-actions{display:flex;gap:10px;margin-top:18px;}
+.cart-actions .btn{flex:1;justify-content:center;}
+.cart-empty{font-size:.88rem;color:var(--soft);line-height:1.55;}
+
+@media(max-width:620px){
+  .cart-bubble{right:18px;bottom:18px;}
+  .cart-panel{right:16px;bottom:88px;width:calc(100vw - 32px);}
+}
+
+
+/* lead form */
+.lead-modal{
+  position:fixed; inset:0; z-index:220;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px;
+  background:rgba(12,12,16,.42);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .22s ease, visibility 0s linear .32s;
+}
+.lead-modal.open{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transition:opacity .22s ease, visibility 0s linear 0s;
+}
+.lead-panel{
+  width:min(620px,100%); max-height:min(760px,calc(100vh - 48px)); overflow:auto;
+  background:var(--card); border:1px solid var(--line); border-radius:22px;
+  padding:30px; box-shadow:0 30px 90px rgba(0,0,0,.28);
+  transform:translateY(24px) scale(.97); opacity:0;
+  transition:transform .34s cubic-bezier(.22,.8,.2,1), opacity .24s ease;
+}
+.lead-modal.open .lead-panel{transform:translateY(0) scale(1); opacity:1;}
+.lead-head{display:flex; align-items:flex-start; justify-content:space-between; gap:20px; margin-bottom:22px;}
+.lead-head h3{font-size:clamp(1.45rem,4vw,2rem);}
+.lead-head p{font-size:.88rem; margin-top:7px; max-width:470px;}
+.lead-close{width:36px;height:36px;flex:none;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;font-size:1.2rem;line-height:1;}
+.lead-plan{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:#f3f3ed;border:1px solid var(--line);border-radius:12px;margin-bottom:22px;}
+.lead-plan small{display:block;color:var(--soft);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:3px;}
+.lead-plan strong{font-family:'Space Grotesk',sans-serif;font-size:.98rem;}
+.lead-plan-price{font-family:'Space Grotesk',sans-serif;font-weight:700;white-space:nowrap;}
+.lead-form{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+.lead-field{display:flex;flex-direction:column;gap:7px;}
+.lead-field.full{grid-column:1/-1;}
+.lead-field label{font-size:.78rem;font-weight:700;}
+.lead-field input,.lead-field textarea{width:100%;border:1px solid #dcdcd4;border-radius:11px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem;padding:12px 13px;outline:none;transition:border-color .18s ease,box-shadow .18s ease;}
+.lead-field textarea{min-height:110px;resize:vertical;}
+.lead-field input:focus,.lead-field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(158,254,30,.25);}
+.lead-actions{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:20px;}
+.lead-note{font-size:.72rem;color:var(--soft);line-height:1.45;max-width:330px;}
+.lead-submit{min-width:170px;justify-content:center;}
+.lead-submit.is-loading{opacity:.65;pointer-events:none;}
+.lead-status{display:none;margin-top:14px;padding:11px 13px;border-radius:10px;font-size:.82rem;line-height:1.45;}
+.lead-status.show{display:block;background:#f1f1eb;color:var(--ink);}
+.lead-status.error{background:#fff0f0;color:#a32323;}
+.lead-success{display:none;text-align:center;padding:34px 12px 20px;}
+.lead-success.show{display:block;}
+.lead-success-mark{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--lime);margin:0 auto 18px;font-size:1.5rem;font-weight:700;}
+.lead-success h3{font-size:1.55rem;margin-bottom:8px;}
+.lead-success p{font-size:.9rem;max-width:390px;margin:0 auto;}
+@media(max-width:620px){
+  .lead-modal{padding:12px;}
+  .lead-panel{max-height:calc(100vh - 24px);padding:22px 18px;border-radius:18px;}
+  .lead-form{grid-template-columns:1fr;}
+  .lead-field.full{grid-column:auto;}
+  .lead-actions{flex-direction:column-reverse;align-items:stretch;}
+  .lead-submit{width:100%;}
+  .lead-note{max-width:none;text-align:center;}
+  .lead-plan{align-items:flex-start;flex-direction:column;gap:5px;}
+}
+
 /* responsive hero collage */
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr; gap:40px;}
@@ -388,6 +537,7 @@ footer{padding:22px 0; background:var(--ink);}
       <a href="#products">Products</a>
       <a href="#services">Solutions</a>
       <a href="#pricing">Pricing</a>
+      <a href="https://loomaimarketing.com/demo">Demo</a>
       <a href="#cases">Cases</a>
       <a href="#about">About</a>
     </nav>
@@ -407,8 +557,7 @@ footer{padding:22px 0; background:var(--ink);}
       <p class="hero-p">LoomAI builds custom websites, CRM systems, and AI-powered automation for small and medium businesses. Save time, get more leads, and focus on what matters.</p>
       <div class="hero-btns">
         <a href="https://loomaimarketing.com/app" class="btn btn-lime">Start your project →</a>
-        <a href="#works" class="btn" style="padding:0; background:none;"><span class="play">▶</span></a>
-        <a href="#works" style="font-weight:600; font-size:.92rem;">See how it works</a>
+        <a href="https://loomaimarketing.com/demo" class="btn btn-ghost">View live demo →</a>
       </div>
     </div>
     <div class="mock-wrap">
@@ -570,6 +719,83 @@ footer{padding:22px 0; background:var(--ink);}
   </div>
 </section>
 
+<button type="button" class="cart-bubble" id="cart-bubble" aria-label="Open selected plan" aria-expanded="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6"/>
+    <circle cx="10" cy="20" r="1.2"/>
+    <circle cx="18" cy="20" r="1.2"/>
+  </svg>
+  <span class="cart-dot" aria-hidden="true"></span>
+</button>
+
+<aside class="cart-panel" id="cart-panel" aria-hidden="true">
+  <div class="cart-head">
+    <h3>Your selection</h3>
+    <button type="button" class="cart-close" id="cart-close" aria-label="Close cart">×</button>
+  </div>
+  <div id="cart-content"></div>
+</aside>
+
+
+<div class="lead-modal" id="lead-modal" aria-hidden="true">
+  <div class="lead-panel" role="dialog" aria-modal="true" aria-labelledby="lead-title">
+    <div id="lead-form-view">
+      <div class="lead-head">
+        <div>
+          <h3 id="lead-title">Let's talk about your project.</h3>
+          <p>Tell us a little about your business and we'll get back to you with the next step.</p>
+        </div>
+        <button type="button" class="lead-close" id="lead-close" aria-label="Close form">×</button>
+      </div>
+
+      <div class="lead-plan">
+        <div>
+          <small>Selected plan</small>
+          <strong id="lead-plan-name">SMB — Full system</strong>
+        </div>
+        <div class="lead-plan-price" id="lead-plan-price">$3,000</div>
+      </div>
+
+      <form class="lead-form" id="lead-form">
+        <div class="lead-field">
+          <label for="lead-name">Name *</label>
+          <input id="lead-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+        </div>
+        <div class="lead-field">
+          <label for="lead-email">Email *</label>
+          <input id="lead-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+        </div>
+        <div class="lead-field">
+          <label for="lead-company">Business / company</label>
+          <input id="lead-company" name="company" type="text" autocomplete="organization" placeholder="Your business">
+        </div>
+        <div class="lead-field">
+          <label for="lead-phone">Phone / Telegram</label>
+          <input id="lead-phone" name="phone" type="text" autocomplete="tel" placeholder="Optional">
+        </div>
+        <div class="lead-field full">
+          <label for="lead-message">What do you need?</label>
+          <textarea id="lead-message" name="message" placeholder="Tell us briefly what you'd like to automate or build."></textarea>
+        </div>
+        <div class="lead-field full">
+          <div class="lead-actions">
+            <div class="lead-note">We'll use these details only to contact you about your project.</div>
+            <button type="submit" class="btn btn-lime lead-submit" id="lead-submit">Send request →</button>
+          </div>
+          <div class="lead-status" id="lead-status" role="status"></div>
+        </div>
+      </form>
+    </div>
+
+    <div class="lead-success" id="lead-success" aria-live="polite">
+      <div class="lead-success-mark">✓</div>
+      <h3>Request sent.</h3>
+      <p>Thanks. Your request is on its way to LoomAI. We'll get back to you soon.</p>
+      <button type="button" class="btn btn-dark" id="lead-done" style="margin-top:22px;">Done</button>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="wrap footer-main">
 
@@ -626,6 +852,207 @@ footer{padding:22px 0; background:var(--ink);}
   menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
   window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+
+})();
+</script>
+
+<script>
+(() => {
+  const choices = document.querySelectorAll('.price-choice');
+  const bubble = document.getElementById('cart-bubble');
+  const panel = document.getElementById('cart-panel');
+  const close = document.getElementById('cart-close');
+  const content = document.getElementById('cart-content');
+  const leadModal = document.getElementById('lead-modal');
+  const leadClose = document.getElementById('lead-close');
+  const leadForm = document.getElementById('lead-form');
+  const leadSubmit = document.getElementById('lead-submit');
+  const leadStatus = document.getElementById('lead-status');
+  const leadFormView = document.getElementById('lead-form-view');
+  const leadSuccess = document.getElementById('lead-success');
+  const leadDone = document.getElementById('lead-done');
+  const leadPlanName = document.getElementById('lead-plan-name');
+  const leadPlanPrice = document.getElementById('lead-plan-price');
+
+  if (!choices.length || !bubble || !panel || !close || !content || !leadModal) return;
+
+  /*
+   * IMPORTANT:
+   * Keep the Telegram bot token on Netlify, never in this HTML.
+   * Change this URL only if your existing Netlify function has another path.
+   */
+  const TELEGRAM_ENDPOINT = '/.netlify/functions/send-lead';
+
+  let selectedPlan = null;
+
+  const plans = [
+    { name: 'SMB — Full system', price: '$3,000', sub: 'One-time setup + $100–200/mo support' },
+    { name: 'Custom', price: 'From $5,000', sub: 'One-time setup + individual support plan' },
+    { name: 'Custom solution', price: 'Let’s build it', sub: 'A system adjusted to your industry, workflow and goals' }
+  ];
+
+  function closeCart(){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+    bubble.setAttribute('aria-expanded','false');
+  }
+
+  function renderCart() {
+    if (!selectedPlan) {
+      content.innerHTML = '<div class="cart-empty">Choose a plan to add it here.</div>';
+      return;
+    }
+
+    content.innerHTML = `
+      <div class="cart-item">
+        <div class="cart-item-name">${selectedPlan.name}</div>
+        <div class="cart-item-sub">${selectedPlan.sub}</div>
+        <div class="cart-item-price">${selectedPlan.price}</div>
+      </div>
+      <div class="cart-actions">
+        <button type="button" class="btn btn-dark" id="cart-continue">Continue →</button>
+        <button type="button" class="btn btn-ghost" id="cart-clear">Clear</button>
+      </div>
+    `;
+
+    document.getElementById('cart-continue').addEventListener('click', openLeadForm);
+    document.getElementById('cart-clear').addEventListener('click', clearSelection);
+  }
+
+  function selectPlan(index) {
+    selectedPlan = plans[index];
+    choices.forEach((button, i) => {
+      const active = i === index;
+      button.classList.toggle('is-selected', active);
+      button.textContent = active ? 'Added to cart ✓' : 'Choose plan →';
+    });
+    bubble.classList.add('visible');
+    bubble.setAttribute('aria-label', `Open cart: ${selectedPlan.name}`);
+    renderCart();
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden', 'false');
+    bubble.setAttribute('aria-expanded', 'true');
+  }
+
+  function clearSelection() {
+    selectedPlan = null;
+    choices.forEach(button => {
+      button.classList.remove('is-selected');
+      button.textContent = 'Choose plan →';
+    });
+    closeCart();
+    bubble.classList.remove('visible');
+    renderCart();
+  }
+
+  function openLeadForm(){
+    if(!selectedPlan) return;
+
+    /* Cart exits first, then the form enters. */
+    closeCart();
+    leadPlanName.textContent = selectedPlan.name;
+    leadPlanPrice.textContent = selectedPlan.price;
+    leadStatus.className = 'lead-status';
+    leadStatus.textContent = '';
+    leadForm.reset();
+    leadFormView.style.display = 'block';
+    leadSuccess.classList.remove('show');
+    leadModal.classList.add('open');
+    leadModal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('lead-name').focus(), 260);
+  }
+
+  function closeLeadForm(){
+    leadModal.classList.remove('open');
+    leadModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  function showStatus(message, error=false){
+    leadStatus.textContent = message;
+    leadStatus.className = 'lead-status show' + (error ? ' error' : '');
+  }
+
+  async function submitLead(event){
+    event.preventDefault();
+    if(!selectedPlan) return;
+    if(!leadForm.checkValidity()){ leadForm.reportValidity(); return; }
+
+    leadSubmit.classList.add('is-loading');
+    leadSubmit.textContent = 'Sending…';
+    leadStatus.className = 'lead-status';
+    leadStatus.textContent = '';
+
+    const formData = new FormData(leadForm);
+    const payload = {
+      type: 'website_lead',
+      source: 'loomaimarketing.com pricing',
+      plan: selectedPlan.name,
+      planPrice: selectedPlan.price,
+      name: formData.get('name'),
+      email: formData.get('email'),
+      company: formData.get('company'),
+      phone: formData.get('phone'),
+      message: formData.get('message'),
+      page: window.location.href,
+      submittedAt: new Date().toISOString()
+    };
+
+    try {
+      const response = await fetch(TELEGRAM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      let result = null;
+      try { result = await response.json(); } catch (_) {}
+      if(!response.ok || (result && result.success === false)){
+        throw new Error((result && (result.message || result.error)) || `Request failed (${response.status})`);
+      }
+
+      leadFormView.style.display = 'none';
+      leadSuccess.classList.add('show');
+    } catch(error){
+      showStatus('Could not send the request right now. Please try again or contact us on Telegram.', true);
+      console.error('LoomAI lead submission failed:', error);
+    } finally {
+      leadSubmit.classList.remove('is-loading');
+      leadSubmit.textContent = 'Send request →';
+    }
+  }
+
+  choices.forEach((button, index) => {
+    button.addEventListener('click', () => selectPlan(index));
+  });
+
+  bubble.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    panel.setAttribute('aria-hidden', String(!open));
+    bubble.setAttribute('aria-expanded', String(open));
+  });
+
+  close.addEventListener('click', closeCart);
+  leadClose.addEventListener('click', closeLeadForm);
+  leadDone.addEventListener('click', () => { closeLeadForm(); clearSelection(); });
+  leadForm.addEventListener('submit', submitLead);
+
+  leadModal.addEventListener('click', event => {
+    if(event.target === leadModal) closeLeadForm();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key !== 'Escape') return;
+    if(leadModal.classList.contains('open')) closeLeadForm();
+    else if(panel.classList.contains('open')) closeCart();
+  });
+
+  renderCart();
+})();
+</script>
+</body>
+</html>
 
 })();
 </script>
