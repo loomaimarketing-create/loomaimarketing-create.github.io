@@ -1671,10 +1671,15 @@
       }
 
       .crm-main {
-        padding-bottom: 62px;
-      }
+  padding-bottom: 62px;
+  
+  height: calc(100vh - 62px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
 
-      .crm-topbar {
+.crm-topbar {
         min-height: 62px;
         padding: 0 18px;
       }
